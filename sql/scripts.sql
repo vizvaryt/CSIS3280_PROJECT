@@ -6,23 +6,35 @@ USE bookstore;
 
 CREATE TABLE Books
 (  ISBN VARCHAR(13) NOT NULL PRIMARY KEY,
-   Author VARCHAR(50),
-   Title VARCHAR(100),
+   Author VARCHAR(50) NOT NULL,
+   Title VARCHAR(100) NOT NULL,
    Price FLOAT(4,2),
-   PublishDate VARCHAR(50),
+   PublishDate VARCHAR(50) NOT NULL,
    Edition VARCHAR(50),
-   Description VARCHAR(500),
-   Language VARCHAR(50),
-   Fiction BOOLEAN,
-   Availability BOOLEAN,
-   Bestseller BOOLEAN,
-   SoldPerYear INT,
-   SoldPerMonth INT,
-   SoldPerWeek INT,
-   EditorsPick BOOLEAN,
-   Textbook BOOLEAN,
-   Purchased BOOLEAN,
-   PurchasedUser VARCHAR(50)
+   Description TEXT NOT NULL,
+   Language VARCHAR(50) NOT NULL,
+   Fiction BOOLEAN NOT NULL,
+   Availability BOOLEAN NOT NULL,
+   Bestseller BOOLEAN NOT NULL,
+   SoldPerYear INT NOT NULL,
+   SoldPerMonth INT NOT NULL,
+   SoldPerWeek INT NOT NULL,
+   EditorsPick BOOLEAN NOT NULL,
+   Textbook BOOLEAN NOT NULL,
+   Purchased BOOLEAN NOT NULL DEFAULT FALSE,
+   FOREIGN KEY (PurchasedUser) REFERENCES Users(Email)
+) ENGINE=InnoDB;
+
+CREATE TABLE Users
+(   Email VARCHAR(50) NOT NULL PRIMARY KEY,
+    FirstName VARCHAR(50) NOT NULL,
+    LastName VARCHAR(50) NOT NULL,
+    PhoneNumber VARCHAR(50) NOT NULL,
+    Address VARCHAR(50) NOT NULL,
+    DateOfBirth DATE NOT NULL,
+    Password VARCHAR(50) NOT NULL,
+    FOREIGN KEY (CurrentCart) REFERENCES Books(ISBN)
+    FOREIGN KEY (PurchasedBooks) REFERENCES Books(ISBN)
 ) ENGINE=InnoDB;
 
 INSERT INTO Books VALUES
@@ -43,4 +55,5 @@ INSERT INTO Books VALUES
    'Caldera OpenLinux System Administration Unleashed', 49.99,
    'January 1st 2021', 'First', 'Too lazy to change this right now lol',
    'English', FALSE, TRUE, TRUE, 120, 10, 3, TRUE, TRUE, FALSE, ''
-   );
+    );
+
