@@ -42,6 +42,19 @@ class Page  {
                         <th>Title</th>
                         <th>Author</th>
                         <th>Price</th>
+                        <th>PublishDate</th>
+                        <th>Edition</th>
+                        <th>Description</th>
+                        <th>Language</th>
+                        <th>Fiction</th>
+                        <th>Availability</th>
+                        <th>Bestseller</th>
+                        <th>SoldPerYear</th>
+                        <th>SoldPerMonth</th>
+                        <th>SoldPerWeek</th>
+                        <th>EditorsPick</th>
+                        <th>Textbook</th>
+                        <th>Purchased</th>
                         <th>Delete</th>
                         <th>Edit</th>                        
                     </tr></thead>
@@ -61,6 +74,19 @@ class Page  {
             echo "<td>{$book->getTitle()}</td>";
             echo "<td>{$book->getAuthor()}</td>";
             echo "<td>{$book->getPrice()}</td>";
+            echo "<td>{$book->getPublishDate()}</td>";
+            echo "<td>{$book->getEdition()}</td>";
+            echo "<td>{$book->getDescription()}</td>";
+            echo "<td>{$book->getLanguage()}</td>";
+            echo "<td>{$book->getFiction()}</td>";
+            echo "<td>{$book->getAvailability()}</td>";
+            echo "<td>{$book->getBestseller()}</td>";
+            echo "<td>{$book->getSoldPerYear()}</td>";
+            echo "<td>{$book->getSoldPerMonth()}</td>";
+            echo "<td>{$book->getSoldPerWeek()}</td>";
+            echo "<td>{$book->getEditorsPick()}</td>";
+            echo "<td>{$book->getTextbook()}</td>";
+            echo "<td>{$book->getPurchased()}</td>";
             echo "<td><a href={$_SERVER['PHP_SELF']}?action=delete&isbn={$book->getISBN()}>Delete</a></td>";
             echo "<td><a href={$_SERVER['PHP_SELF']}?action=edit&isbn={$book->getISBN()}>Edit</a></td>";
             echo "</tr>";

@@ -4,16 +4,17 @@
 require_once('inc/config.inc.php');
 //Entities
 require_once('inc/Entity/Book.class.php');
+require_once('inc/Entity/User.class.php');
 require_once('inc/Entity/Page.class.php');
 //Utility Classes
 require_once('inc/Utility/PDOAgent.class.php');
 require_once('inc/Utility/BookDAO.class.php');
+require_once('inc/Utility/UserDAO.class.php');
 
 
 // initialize the BookDAO
 BookDAO::initialize('Book');
-
-
+UserDAO::initialize('User');
 
 // check if there's a GET to perform delete
 if(!empty($_GET)){

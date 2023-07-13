@@ -11,8 +11,8 @@ class BookDao {
     }
     
     // function to create (insert) book
-    static function createBook(Book $newBook) : int   {
-        $insertBook = "INSERT INTO books (
+    static function createBook(Book $newBook) : int {
+        $insertBook = "INSERT INTO Books (
             ISBN, Author, Title, Price,
             PublishDate, Edition, Description, Language,
             Fiction, Availability, Bestseller, SoldPerYear,
@@ -54,7 +54,7 @@ class BookDao {
 
     // function to get (select) book(s)
     static function getBooks() : Array {        
-        $selectAll = "SELECT * FROM books";
+        $selectAll = "SELECT * FROM Books";
         self::$db->query($selectAll);
         self::$db->execute();
         return self::$db->resultSet();
@@ -63,14 +63,14 @@ class BookDao {
 
     // function to delete book, we should use try catch
     static function deleteBook(string $isbn) : bool {
-        $deleteBook = "DELETE FROM books WHERE ISBN = :isbn";
+        $deleteBook = "DELETE FROM Books WHERE ISBN = :isbn";
         try{
             self::$db->query($deleteBook);
             self::$db->bind(":isbn", $isbn);
             self::$db->execute();    
 
             if(self::$db->rowCount() != 1){
-                throw new Exception("Problem in deleting the book {$isbn}");
+                throw new Exception("An error occurred deleting the book {$isbn}");
             }
 
         }catch(Exception $e){
@@ -85,7 +85,7 @@ class BookDao {
     }
 
     static function getBook(String $isbn) : Book {        
-        $selectBook = "SELECT * FROM books WHERE ISBN = :isbn";
+        $selectBook = "SELECT * FROM Books WHERE ISBN = :isbn";
 
         self::$db->query($selectBook);
         self::$db->bind(":isbn",$isbn);
@@ -94,10 +94,10 @@ class BookDao {
 
     }
 
-    // function to create (insert) book
+    // update
     // TODO needs work
     static function editBook(Book $newBook) : int   {
-        $editBook = "UPDATE books SET Author=:author, Title=:title, Price=:price ";
+        $editBook = "UPDATE Books SET Author=:author, Title=:title, Price=:price ";
         $editBook .= "WHERE ISBN=:isbn";
 
         self::$db->query($editBook);
