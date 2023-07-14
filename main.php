@@ -6,6 +6,7 @@ require_once('inc/config.inc.php');
 require_once('inc/Entity/Book.class.php');
 require_once('inc/Entity/User.class.php');
 require_once('inc/Entity/Page.class.php');
+require_once('inc/Entity/homePage.class.php');
 //Utility Classes
 require_once('inc/Utility/PDOAgent.class.php');
 require_once('inc/Utility/BookDAO.class.php');
@@ -60,14 +61,19 @@ if (!empty($_POST)) {
 $books = BookDAO::getBooks();
 
 // display the page
-Page::$title = "CSIS3280 PROJECT BOOKSTORE";
-Page::header();
-if(!empty($_GET) && ($_GET['action'] == "edit")){
-    Page::showEditForm(BookDAO::getBook($_GET['isbn']));   
-}else{
-    Page::showAddForm();
-}
+// Page::$title = "CSIS3280 PROJECT BOOKSTORE";
+// Page::header();
+// if(!empty($_GET) && ($_GET['action'] == "edit")){
+//     Page::showEditForm(BookDAO::getBook($_GET['isbn']));   
+// }else{
+//     Page::showAddForm();
+// }
 
-Page::listBooks($books);
-Page::footer();
+// Page::listBooks($books);
+// Page::footer();
+
+homePage::header();
+homePage::navBar();
+homePage::searchBar();
+homePage::footer();
 
