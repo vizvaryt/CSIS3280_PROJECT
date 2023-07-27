@@ -1,3 +1,7 @@
+html {
+    background-color: snow;
+}
+
 /* Add a black background color to the top navigation */
 .topnav {
     background-color: #333;
@@ -32,6 +36,51 @@
     color: white;
 }
 
+.bookContainer {
+    display: flex; /* Use Flexbox to display books horizontally */
+    flex-wrap: wrap; /* Wrap books to the next line if they overflow */
+    justify-content: center; /* Center books horizontally */
+}
+
+.bookCard {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    padding: 20px;
+    margin: 10px;
+    width: 250px;
+    max-width: 100%;
+    text-align: center;
+    transition: box-shadow 0.3s ease;
+}
+
+.bookCard img {
+    max-width: 100%;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.bookCard h2 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+.bookCard p {
+    color: #777;
+}
+
+.bookCard:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .bookCard {
+        width: 100%;
+    }
+}
 
 .searchBar {
     padding-top: 14px;
@@ -62,4 +111,8 @@ footer {
     color: #f2f2f2;
     font-family: Helvetica;
     text-align: center;
+}
+
+footer a:visited {
+    color: #f2f2f2;
 }

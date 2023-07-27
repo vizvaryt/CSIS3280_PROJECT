@@ -17,14 +17,14 @@ class BookDao {
             PublishDate, Edition, Description, Language,
             Fiction, Availability, Bestseller, SoldPerYear,
             SoldPerMonth, SoldPerWeek, EditorsPick, Textbook,
-            Purchased, PurchasedUser
+            Purchased, PurchasedUser, Image
             ) ";
         $insertBook .= "VALUES (
             :isbn, :author, :title, :price,
             :publishDate, :edition, :description, :language,
             :fiction, :availability, :bestseller, :soldPerYear,
             :soldPerMonth, :soldPerWeek, :editorsPick, :textbook,
-            :purchased, :purchasedUser
+            :purchased, :purchasedUser, :image
             )";
 
         self::$db->query($insertBook);
@@ -46,6 +46,7 @@ class BookDao {
         self::$db->bind(":textbook", $newBook->getTextbook());
         self::$db->bind(":purchased", $newBook->getPurchased());
         self::$db->bind(":purchasedUser", $newBook->getPurchasedUser());
+        self::$db->bind(":image", $newBook->getImage());
 
         self::$db->execute();
 
@@ -119,6 +120,7 @@ class BookDao {
         self::$db->bind(":textbook", $newBook->getTextbook());
         self::$db->bind(":purchased", $newBook->getPurchased());
         self::$db->bind(":purchasedUser", $newBook->getPurchasedUser());
+        self::$db->bind(":image", $newBook->getImage());
 
         self::$db->execute();
 

@@ -20,6 +20,7 @@ class Book  {
     private $Textbook;
     private $Purchased;
     private $PurchasedUser;
+    private $Image;
     
 
     //Getters
@@ -94,6 +95,10 @@ class Book  {
     function getPurchasedUser(): string {
         return $this->PurchasedUser;
     }
+
+    function getImage(): string {
+        return $this->Image;
+    }
     
     //Setters
 
@@ -167,6 +172,10 @@ class Book  {
 
     function setPurchasedUser(string $purchasedUser){
         $this->PurchasedUser = $purchasedUser;
+    }
+
+    function setImage(string $image){
+        $this->Image = $image;
     }
 
     

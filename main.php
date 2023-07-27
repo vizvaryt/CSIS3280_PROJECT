@@ -7,6 +7,8 @@ require_once('inc/Entity/Book.class.php');
 require_once('inc/Entity/User.class.php');
 require_once('inc/Entity/Page.class.php');
 require_once('inc/Entity/homePage.class.php');
+require_once('inc/Entity/bestSellersPage.class.php');
+require_once('inc/Entity/editorsPicksPage.class.php');
 //Utility Classes
 require_once('inc/Utility/PDOAgent.class.php');
 require_once('inc/Utility/BookDAO.class.php');
@@ -18,11 +20,11 @@ BookDAO::initialize('Book');
 UserDAO::initialize('User');
 
 // check if there's a GET to perform delete
-if(!empty($_GET)){
-    if($_GET['action'] == 'delete'){
-        BookDAO::deleteBook($_GET['isbn']);
-    }
-}
+// if(!empty($_GET)){
+//     if($_GET['action'] == 'delete'){
+//         BookDAO::deleteBook($_GET['isbn']);
+//     }
+// }
 
 //Process any post data
 if (!empty($_POST)) {
@@ -72,8 +74,39 @@ $books = BookDAO::getBooks();
 // Page::listBooks($books);
 // Page::footer();
 
-homePage::header();
-homePage::navBar();
-homePage::searchBar();
-homePage::footer();
-
+//TODO finish routes and add 404 page
+if (isset($_GET['page'])) {
+    switch ($_GET['page']) {
+        case 'homePage':
+            homePage::header();
+            homePage::navBar();
+            homePage::searchBar();
+            homePage::bookGallery($books);
+            homePage::footer();
+            break;
+        case 'bestSellers':
+            bestSellersPage::header();
+            bestSellersPage::navBar();
+            bestSellersPage::searchBar();
+            bestSellersPage::bookGallery($books);
+            bestSellersPage::footer();
+            break;
+        case 'editorsPicks':
+            editorsPicksPage::header();
+            editorsPicksPage::navBar();
+            editorsPicksPage::searchBar();
+            editorsPicksPage::bookGallery($books);
+            editorsPicksPage::footer();
+            break;
+        default:
+            // Handle 404 page or redirect to a default page
+            break;
+    }
+} else {
+    // Default to rendering homePage if 'page' query parameter is not set
+    homePage::header();
+    homePage::navBar();
+    homePage::searchBar();
+    homePage::bookGallery($books);
+    homePage::footer();
+}
