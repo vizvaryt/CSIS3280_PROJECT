@@ -53,7 +53,7 @@ INSERT INTO Books VALUES
   ),
   ('0-672-31509-2', 'Pruitt, et al.', 'Teach Yourself GIMP in 24 Hours', 24.99,
   'August 27th 2017', 'Second', 'A book for people who want to learn GIMP',
-   'Multi-Language', TRUE, TRUE, FALSE, 60, 5, 1, TRUE, TRUE, FALSE, 'img/2.jpg'
+   'Multi-Language', FALSE, TRUE, FALSE, 60, 5, 1, TRUE, TRUE, FALSE, 'img/2.jpg'
   ),
   ('0-672-31769-9', 'Thomas Schenk', 
    'Caldera OpenLinux System Administration Unleashed', 49.99,

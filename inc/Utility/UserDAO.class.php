@@ -1,5 +1,7 @@
 <?php
 
+//TODO needs a ton of work and COMMENTING before we can use it for the user session
+
 class UserDAO {
     
     private static $db;

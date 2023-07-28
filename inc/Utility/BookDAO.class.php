@@ -1,16 +1,16 @@
 <?php
 
-class BookDao {
+class BookDAO {
 
-    //Place to store the PDO Agent/Service class    
+    //DB var for the PDOAgent
     private static $db;
 
-    // you must initialize the PDOAgent
+    //Initializing PDOAgent
     static function initialize(string $className)   {                
         self::$db = new PDOAgent($className);
     }
     
-    // function to create (insert) book
+    //Function for INSERT book
     static function createBook(Book $newBook) : int {
         $insertBook = "INSERT INTO Books (
             ISBN, Author, Title, Price,
@@ -52,8 +52,8 @@ class BookDao {
 
         return self::$db->lastInsertId();
     }
-
-    // function to get (select) book(s)
+    
+    //Function that SELECTs ALL books
     static function getBooks() : Array {        
         $selectAll = "SELECT * FROM Books";
         self::$db->query($selectAll);
@@ -62,7 +62,8 @@ class BookDao {
 
     }
 
-    // function to delete book, we should use try catch
+    //Function to DELETE a book
+    //TODO make this actually work and log error
     static function deleteBook(string $isbn) : bool {
         $deleteBook = "DELETE FROM Books WHERE ISBN = :isbn";
         try{
@@ -85,6 +86,7 @@ class BookDao {
         return true;
     }
 
+    //Function to SELECT a single book based on ISBN, used to get to bookDetailPage via main.php router
     static function getBook(String $isbn) : Book {        
         $selectBook = "SELECT * FROM Books WHERE ISBN = :isbn";
 
@@ -95,8 +97,82 @@ class BookDao {
 
     }
 
-    // update
-    // TODO needs work
+    //Function to SELECT books with Bestseller = TRUE
+    static function getBestsellers() : Array {
+        $select = "SELECT * FROM Books WHERE Bestseller = TRUE";
+
+        self::$db->query($select);
+        self::$db->execute();
+        return self::$db->resultSet();
+    }
+
+    //Function to SELECT books with EditorsPick = TRUE
+    static function getEditorsPicks() : Array {
+        $select = "SELECT * FROM Books WHERE EditorsPick = TRUE";
+
+        self::$db->query($select);
+        self::$db->execute();
+        return self::$db->resultSet();
+    }
+
+    //Function to SELECT books with Textbook = TRUE
+    static function getTextbooks() : Array {
+        $select = "SELECT * FROM Books WHERE Textbook = TRUE";
+
+        self::$db->query($select);
+        self::$db->execute();
+        return self::$db->resultSet();
+    }
+
+    //Function to SELECT books with Fiction = TRUE
+    static function getFiction() : Array {
+        $select = "SELECT * FROM Books WHERE Fiction = TRUE";
+
+        self::$db->query($select);
+        self::$db->execute();
+        return self::$db->resultSet();
+    }
+
+    //Function to SELECT books with Fiction = FALSE
+    static function getNonFiction() : Array {
+        $select = "SELECT * FROM Books WHERE Fiction = FALSE";
+
+        self::$db->query($select);
+        self::$db->execute();
+        return self::$db->resultSet();
+    }
+
+    //Function to SELECT books with Language = 'English'
+    static function getEnglish() : Array {
+        $select = "SELECT * FROM Books WHERE Language = 'English'";
+
+        self::$db->query($select);
+        self::$db->execute();
+        return self::$db->resultSet();
+    }
+
+    //Function to SELECT books with Language != 'English'
+    static function getOtherLanguage() : Array {
+        $select = "SELECT * FROM Books WHERE Language NOT LIKE 'English'";
+
+        self::$db->query($select);
+        self::$db->execute();
+        return self::$db->resultSet();
+    }
+
+    //Function to SELECT books based on query provided from searchbox user input,
+    //Searches only the Description, Author, Title, and Language columns
+    static function searchBooks($query) : Array {
+        $select = "SELECT * FROM Books WHERE CONCAT(Description, Author, Title, Language) LIKE :query";
+    
+        self::$db->query($select);
+        self::$db->bind(":query", "%".$query."%");
+        self::$db->execute();
+        return self::$db->resultSet();
+    }
+
+    //Function to UPDATE book attributes
+    //TODO needs work before it will function
     static function editBook(Book $newBook) : int   {
         $editBook = "UPDATE Books SET Author=:author, Title=:title, Price=:price ";
         $editBook .= "WHERE ISBN=:isbn";

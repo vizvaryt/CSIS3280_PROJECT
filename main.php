@@ -5,76 +5,29 @@ require_once('inc/config.inc.php');
 //Entities
 require_once('inc/Entity/Book.class.php');
 require_once('inc/Entity/User.class.php');
-require_once('inc/Entity/Page.class.php');
 require_once('inc/Entity/homePage.class.php');
 require_once('inc/Entity/bestSellersPage.class.php');
 require_once('inc/Entity/editorsPicksPage.class.php');
+require_once('inc/Entity/textbookPage.class.php');
+require_once('inc/Entity/contactPage.class.php');
+require_once('inc/Entity/bookDetailPage.class.php');
 //Utility Classes
 require_once('inc/Utility/PDOAgent.class.php');
 require_once('inc/Utility/BookDAO.class.php');
 require_once('inc/Utility/UserDAO.class.php');
 
 
-// initialize the BookDAO
+//Initialize the DAOs
 BookDAO::initialize('Book');
 UserDAO::initialize('User');
 
-// check if there's a GET to perform delete
-// if(!empty($_GET)){
-//     if($_GET['action'] == 'delete'){
-//         BookDAO::deleteBook($_GET['isbn']);
-//     }
-// }
-
-//Process any post data
-if (!empty($_POST)) {
-    //Assemble the book
-    $nb = new Book();
-    $nb->setISBN($_POST['isbn']);
-    $nb->setAuthor($_POST['author']);
-    $nb->setTitle($_POST['title']);
-    $nb->setPrice($_POST['price']);
-    $nb->setPublishDate($_POST['publishDate']);
-    $nb->setEdition($_POST['edition']);
-    $nb->setDescription($_POST['description']);
-    $nb->setLanguage($_POST['language']);
-    $nb->setFiction($_POST['fiction']);
-    $nb->setAvailability($_POST['availability']);
-    $nb->setBestseller($_POST['bestseller']);
-    $nb->setSoldPerYear($_POST['soldPerYear']);
-    $nb->setSoldPerMonth($_POST['soldPerMonth']);
-    $nb->setSoldPerWeek($_POST['soldPerWeek']);
-    $nb->setEditorsPick($_POST['editorsPick']);
-    $nb->setTextbook($_POST['textbook']);
-    $nb->setPurchased($_POST['purchased']);
-    $nb->setPurchasedUser($_POST['purchasedUser']);
-    
-    if(isset($_POST['action'])){
-        // edit form
-        BookDAO::editBook($nb);
-    }
-    else{
-        //Add the book to the database
-        BookDAO::createBook($nb);
-    }
-}
-
-// get the books
+//Get all books for display on main page
 $books = BookDAO::getBooks();
 
-// display the page
-// Page::$title = "CSIS3280 PROJECT BOOKSTORE";
-// Page::header();
-// if(!empty($_GET) && ($_GET['action'] == "edit")){
-//     Page::showEditForm(BookDAO::getBook($_GET['isbn']));   
-// }else{
-//     Page::showAddForm();
-// }
+//Router Logic
 
-// Page::listBooks($books);
-// Page::footer();
-
-//TODO finish routes and add 404 page
+//TODO add 404 page
+//First Router level, checks 'page' value from navbar hrefs
 if (isset($_GET['page'])) {
     switch ($_GET['page']) {
         case 'homePage':
@@ -85,28 +38,115 @@ if (isset($_GET['page'])) {
             homePage::footer();
             break;
         case 'bestSellers':
+            $bestSellers = BookDAO::getBestsellers();
             bestSellersPage::header();
             bestSellersPage::navBar();
             bestSellersPage::searchBar();
-            bestSellersPage::bookGallery($books);
+            bestSellersPage::bookGallery($bestSellers);
             bestSellersPage::footer();
             break;
         case 'editorsPicks':
+            $editorsPicks = BookDAO::getEditorsPicks();
             editorsPicksPage::header();
             editorsPicksPage::navBar();
             editorsPicksPage::searchBar();
-            editorsPicksPage::bookGallery($books);
+            editorsPicksPage::bookGallery($editorsPicks);
             editorsPicksPage::footer();
             break;
+        case 'textbooks':
+            $textbooks = BookDAO::getTextbooks();
+            textbookPage::header();
+            textbookPage::navBar();
+            textbookPage::searchBar();
+            textbookPage::bookGallery($textbooks);
+            textbookPage::footer();
+            break;
+        case 'contact':
+            contactPage::header();
+            contactPage::navBar();
+            contactPage::body();
+            contactPage::footer();
+            break;
+        case 'detail':
+            $book = BookDAO::getBook($_GET['book']);
+            bookDetailPage::header();
+            bookDetailPage::navBar();
+            bookDetailPage::bookDetail($book);
+            bookDetailPage::footer();
         default:
             // Handle 404 page or redirect to a default page
             break;
     }
+
+//Second Router level, checks for 'option' and 'query' values from the search bar
 } else {
-    // Default to rendering homePage if 'page' query parameter is not set
-    homePage::header();
-    homePage::navBar();
-    homePage::searchBar();
-    homePage::bookGallery($books);
-    homePage::footer();
+    if (isset($_GET['option'])) {
+        switch ($_GET['option']){
+            case 'bestsellers':
+                $bestSellers = BookDAO::getBestsellers();
+                bestSellersPage::header();
+                bestSellersPage::navBar();
+                bestSellersPage::searchBar();
+                bestSellersPage::bookGallery($bestSellers);
+                bestSellersPage::footer();
+                break;
+            case 'fiction':
+                $fictionBooks = BookDAO::getFiction();
+                homePage::header();
+                homePage::navBar();
+                homePage::searchBar();
+                homePage::bookGallery($fictionBooks);
+                homePage::footer();
+                break;
+            case 'nonfiction':
+                $nonFictionBooks = BookDAO::getNonFiction();
+                homePage::header();
+                homePage::navBar();
+                homePage::searchBar();
+                homePage::bookGallery($nonFictionBooks);
+                homePage::footer();
+                break;
+            case 'textbooks':
+                $textbooks = BookDAO::getTextbooks();
+                textbookPage::header();
+                textbookPage::navBar();
+                textbookPage::searchBar();
+                textbookPage::bookGallery($textbooks);
+                textbookPage::footer();
+                break;
+            case 'english':
+                $englishBooks = BookDAO::getEnglish();
+                homePage::header();
+                homePage::navBar();
+                homePage::searchBar();
+                homePage::bookGallery($englishBooks);
+                homePage::footer();
+                break;
+            case 'otherlanguage':
+                $otherLanguageBooks = BookDAO::getOtherLanguage();
+                homePage::header();
+                homePage::navBar();
+                homePage::searchBar();
+                homePage::bookGallery($otherLanguageBooks);
+                homePage::footer();
+                break;
+        }
+    }
+    elseif (isset($_GET['query'])) {
+        $searchedBooks = BookDAO::searchBooks($_GET['query']);
+        homePage::header();
+        homePage::navBar();
+        homePage::searchBar();
+        homePage::bookGallery($searchedBooks);
+        homePage::footer();
+    }
+    //Third Router level, if no URI values are present, render the basic homepage
+    else {
+        homePage::header();
+        homePage::navBar();
+        homePage::searchBar();
+        homePage::bookGallery($books);
+        homePage::footer();
+    }
 }
+
