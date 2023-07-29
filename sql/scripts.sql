@@ -34,7 +34,7 @@ CREATE TABLE Users
     PhoneNumber VARCHAR(50) NOT NULL,
     Address VARCHAR(50) NOT NULL,
     DateOfBirth DATE NOT NULL,
-    Password VARCHAR(50) NOT NULL,
+    Password VARCHAR(100) NOT NULL,
     CurrentCart VARCHAR(500),
     PurchasedBooks VARCHAR(500),
     FOREIGN KEY (CurrentCart) REFERENCES Books(ISBN),
@@ -64,5 +64,5 @@ INSERT INTO Books VALUES
 INSERT INTO Users VALUES
   (
     'admin@admin.com', 'Admin', 'Debug', '6043100001', '123 Austin Ave', '2000-01-01',
-    'admin', NULL, NULL
+    '$2y$10$UlhBlEkjF9vos3we41tLSORFh.froH1r2fuQsudqBntiedkDq68fq', NULL, NULL
   );

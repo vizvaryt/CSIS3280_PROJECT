@@ -11,18 +11,53 @@ require_once('inc/Entity/editorsPicksPage.class.php');
 require_once('inc/Entity/textbookPage.class.php');
 require_once('inc/Entity/contactPage.class.php');
 require_once('inc/Entity/bookDetailPage.class.php');
+require_once('inc/Entity/loginPage.class.php');
+require_once('inc/Entity/myAccountPage.class.php');
 //Utility Classes
 require_once('inc/Utility/PDOAgent.class.php');
 require_once('inc/Utility/BookDAO.class.php');
 require_once('inc/Utility/UserDAO.class.php');
+require_once('inc/Utility/LoginManager.class.php');
 
 
 //Initialize the DAOs
 BookDAO::initialize('Book');
 UserDAO::initialize('User');
 
+//Initialize session
+session_start();
+
 //Get all books for display on main page
 $books = BookDAO::getBooks();
+
+//If logout button was pressed, unset the $_SESSION var and destroy the session
+if(!empty($_POST['logout'])) {
+    unset($_SESSION);
+    session_destroy();
+}
+
+//Login functionality using POST form
+if(!empty($_POST['email'])){
+
+    //Get user based on POSTed email
+    $authUser = UserDAO::getUser($_POST['email']);
+
+    //Verify password using HASH
+    if($authUser && $authUser->verifyPassword($_POST['password'])){
+
+        //Setting 'loggedin' state using user email
+        $_SESSION['loggedin'] = $authUser->getEmail();
+    }
+    else {
+        //If the DAO returns null or any other unexpected result, redirect back to the login page and display notification
+        $_GET['page'] = "invalidLogin";
+    }
+
+}
+
+if (isset($_POST['firstName'])) {
+    //TODO pull all post data and create user that will be posted into db using DAO
+}
 
 //Router Logic
 
@@ -73,6 +108,28 @@ if (isset($_GET['page'])) {
             bookDetailPage::navBar();
             bookDetailPage::bookDetail($book);
             bookDetailPage::footer();
+            break;
+        case 'login':
+            loginPage::header();
+            loginPage::navBar();
+            loginPage::loginForm(FALSE);
+            loginPage::registerForm();
+            loginPage::footer();
+            break;
+        case 'myAccount':
+            $user = UserDAO::getUser($_SESSION['loggedin']);
+            myAccountPage::header();
+            myAccountPage::navBar();
+            myAccountPage::userInfo($user);
+            myAccountPage::footer();
+            break;
+        case 'invalidLogin':
+            loginPage::header();
+            loginPage::navBar();
+            loginPage::loginForm(TRUE);
+            loginPage::registerForm();
+            loginPage::footer();
+            break;
         default:
             // Handle 404 page or redirect to a default page
             break;

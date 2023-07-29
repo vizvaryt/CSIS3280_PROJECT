@@ -1,5 +1,7 @@
 <?php
 
+    require_once('inc/Utility/LoginManager.class.php');
+
     class bookDetailPage {
 
         //Displays header section
@@ -41,7 +43,14 @@
                     <a class="navLeft" href="main.php?page=editorsPicks">Editor's Picks</a>
                     <a class="navLeft" href="main.php?page=textbooks">Textbooks</a>
                     <a class="navLeft" href="main.php?page=contact">Contact</a>
-                    <a class="navRight" href="main.php?page=myAccount">My Account</a>
+                    <?php
+                        if(LoginManager::verifyLogin()) {
+                            echo '<a class="navRight" href="main.php?page=myAccount">My Account</a>';
+                        }
+                        else {
+                            echo '<a class="navRight" href="main.php?page=login">Login / Register</a>';
+                        }
+                    ?>
                     <a class="navRight" href="main.php?page=myCart">My Cart</a>
                 </div>
             <?php

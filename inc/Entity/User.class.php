@@ -12,6 +12,10 @@ class User {
     private $CurrentCart;
     private $PurchasedBooks;
 
+    function verifyPassword(string $passwordToVerify){
+        return password_verify($passwordToVerify, $this->getPassword());
+    }
+
     //Getters
     function getEmail(): string {
         return $this->Email;
@@ -28,7 +32,7 @@ class User {
     function getAddress(): string {
         return $this->Address;
     }
-    function getDateOfBirth(): DateTime {
+    function getDateOfBirth(): string {
         return $this->DateOfBirth;
     }
     function getPassword(): string {
@@ -57,7 +61,7 @@ class User {
     function setAddress(string $address){
         $this->Address = $address;
     }
-    function setDateOfBirth(DateTime $dateOfBirth){
+    function setDateOfBirth(string $dateOfBirth){
         $this->DateOfBirth = $dateOfBirth;
     }
     function setPassword(string $password){

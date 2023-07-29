@@ -1,8 +1,6 @@
 <?php
 
-    require_once('inc/Utility/LoginManager.class.php');
-
-    class contactPage {
+    class myAccountPage {
 
         //Displays header section
         static function header() {
@@ -13,7 +11,7 @@
                         <meta charset="UTF-8">
                         <meta name="viewport" content="width=device-width, initial-scale=1.0">
                         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-                        <title>Bookstore Contact</title>
+                        <title>Bookstore My Account</title>
                         <link rel="stylesheet" href="css/styles2.css">
                         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
                         <link rel="icon" href="./favicon.ico" type="image/x-icon">
@@ -28,7 +26,7 @@
                     </body>
                     <footer>
                         Copyright Bookstore 2023 -
-                        <a href="">Contact Us</a>
+                        <a href="main.php?page=contact">Contact Us</a>
                     </footer>
                 </html>
             <?php
@@ -42,10 +40,10 @@
                     <a class="navLeft" href="main.php?page=bestSellers">Bestsellers</a>
                     <a class="navLeft" href="main.php?page=editorsPicks">Editor's Picks</a>
                     <a class="navLeft" href="main.php?page=textbooks">Textbooks</a>
-                    <a class="navLeft activeLeft" href="main.php?page=contact">Contact</a>
+                    <a class="navLeft" href="main.php?page=contact">Contact</a>
                     <?php
                         if(LoginManager::verifyLogin()) {
-                            echo '<a class="navRight" href="main.php?page=myAccount">My Account</a>';
+                            echo '<a class="navRight activeLeft" href="main.php?page=myAccount">My Account</a>';
                         }
                         else {
                             echo '<a class="navRight" href="main.php?page=login">Login / Register</a>';
@@ -56,15 +54,29 @@
             <?php
         }
 
-        //Displays contactPage body
-        static function body() {
+        static function userInfo($user) {
             ?>
-                <div class="contactBody">
-                    <h1>Tristan Vizvary's Bookstore</h1>
-                    <p>This bookstore was created by Tristan Vizvary for his CSIS3280 class project.</p>
-                </div>
+            <div class="userInfoContainer">
+            <div class="textContainer">
+                <h2>My Account</h2>
+                <hr>
+                <p>
+                    <!-- TODO add purchased books list -->
+                    <b>Name: </b> <?php echo $user->getFirstName() . " " . $user->getLastName();?> <br>
+                    <b>Email: </b> <?php echo $user->getEmail();?> <br>
+                    <b>Date of Birth: </b> <?php echo $user->getDateOfBirth();?> <br>
+                    <b>Phone Number: </b> <?php echo $user->getPhoneNumber();?> <br>
+                    <b>Address: </b> <?php echo $user->getAddress();?> <br>
+                </p>
+            </div>
+            <form class="loginForm" action="main.php" method="POST">
+                <button type="submit" name="logout" value="TRUE">Logout</button>
+            </form>
+            </div>
             <?php
         }
+
+
     }
 
 ?>

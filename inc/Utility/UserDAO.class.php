@@ -1,7 +1,5 @@
 <?php
 
-//TODO needs a ton of work and COMMENTING before we can use it for the user session
-
 class UserDAO {
     
     private static $db;
@@ -43,6 +41,27 @@ class UserDAO {
         self::$db->query($selectAll);
         self::$db->execute();
         return self::$db->resultSet();
+    }
+
+    static function getUser($email) {
+        $select = "SELECT * FROM Users WHERE Email = :email";
+
+        try{
+            self::$db->query($select);
+            self::$db->bind(":email", $email);
+            self::$db->execute();
+
+            if(self::$db->rowCount() != 1){
+                throw new Exception("An error occured fetching the user {$email}");
+            }
+        }catch (Exception $e){
+            $error = $e->getMessage();
+            // echo $error;
+            return null;
+        }
+
+        return self::$db->singleResult();
+
     }
 
     //delete

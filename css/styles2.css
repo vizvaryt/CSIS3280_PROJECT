@@ -48,6 +48,76 @@ body {
     align-items: flex-start;
 }
 
+.formContainer {
+    display: flex; /* Use Flexbox to display books horizontally */
+    flex-wrap: wrap; /* Wrap books to the next line if they overflow */
+    justify-content: center; /* Center books horizontally */
+    align-items: flex-start;
+}
+
+.userInfoContainer {
+    display: flex; /* Use Flexbox to display books horizontally */
+    flex-wrap: wrap; /* Wrap books to the next line if they overflow */
+    justify-content: center; /* Center books horizontally */
+    align-items: flex-start;
+}
+
+.loginContainer {
+    font-family: Helvetica;
+    flex: 1;
+    max-width: 500px;
+    padding: 20px;
+    padding-left: 300px;
+    padding-top: 200px;
+}
+
+.registerContainer {
+    font-family: Helvetica;
+    flex: 1;
+    max-width: 500px;
+    padding: 20px;
+    padding-top: 200px;
+}
+
+.loginForm {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.loginFormRow {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.loginFormRow label {
+    flex: 0 0 115px; /* Adjust the width of the label as needed */
+    margin-right: 10px;
+}
+
+.loginFormRow input {
+    flex: 1;
+}
+
+.loginForm button{
+    height: 50px;
+    width: 100px;
+    border-radius: 5px;
+    border-color: #0ea7ff;
+    background-color: #0ea7ff;
+    font-size: 13pt;
+}
+
+.textContainer {
+    font-family: Helvetica;
+    flex: 1;
+    max-width: 500px;
+    padding: 20px;
+    padding-left: 200px;
+}
+
 .textContainer {
     font-family: Helvetica;
     flex: 1;
