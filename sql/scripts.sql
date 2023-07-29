@@ -49,7 +49,7 @@ INSERT INTO Books VALUES
    ),
   ('0-672-31745-1', 'Thomas Down', 'Installing Debian GNU/Linux', 24.99,
   'December 25th 1990', 'Third', 'A book for Linux beginners',
-   'English', FALSE, FALSE, FALSE, 12, 1, 0, FALSE, TRUE, FALSE, 'img/1.jpg'
+   'English', FALSE, TRUE, FALSE, 12, 1, 0, FALSE, TRUE, FALSE, 'img/1.jpg'
   ),
   ('0-672-31509-2', 'Pruitt, et al.', 'Teach Yourself GIMP in 24 Hours', 24.99,
   'August 27th 2017', 'Second', 'A book for people who want to learn GIMP',
@@ -57,7 +57,7 @@ INSERT INTO Books VALUES
   ),
   ('0-672-31769-9', 'Thomas Schenk', 
    'Caldera OpenLinux System Administration Unleashed', 49.99,
-   'January 1st 2021', 'First', 'Too lazy to change this right now lol',
+   'January 1st 2021', 'First', 'An advanced Linux Admin book',
    'English', FALSE, TRUE, TRUE, 120, 10, 3, TRUE, TRUE, FALSE, 'img/3.jpg'
   );
 
