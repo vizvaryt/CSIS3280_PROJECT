@@ -106,10 +106,12 @@
                             <input type="text" id="address" name="address" required> <br>
                             </div>
                             <div class="loginFormRow">
+                            <label for="dateOfBirth">Date of Birth:</label>
+                            <input type="date" id="dateOfBirth" name="dateOfBirth" style="width: 171.6px;" required> <br>
                             </div>
                             <div class="loginFormRow">
-                            <label for="address">Address:</label>
-                            <input type="text" id="address" name="address" required> <br>
+                            <label for="password">Password:</label>
+                            <input type="password" id="password" name="password" required> <br>
                             </div>
                             <button type="submit">Register</button>
                         </form>

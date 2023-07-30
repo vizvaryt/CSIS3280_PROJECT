@@ -13,6 +13,9 @@ require_once('inc/Entity/contactPage.class.php');
 require_once('inc/Entity/bookDetailPage.class.php');
 require_once('inc/Entity/loginPage.class.php');
 require_once('inc/Entity/myAccountPage.class.php');
+require_once('inc/Entity/orderedPage.class.php');
+require_once('inc/Entity/myCartPage.class.php');
+require_once('inc/Entity/purchaseCnfrmPage.class.php');
 //Utility Classes
 require_once('inc/Utility/PDOAgent.class.php');
 require_once('inc/Utility/BookDAO.class.php');
@@ -55,8 +58,60 @@ if(!empty($_POST['email'])){
 
 }
 
+//If firstName was POSTed, then run register functionality
 if (isset($_POST['firstName'])) {
-    //TODO pull all post data and create user that will be posted into db using DAO
+    $_GET['page'] = "myAccount";
+    $newUser = new User();
+
+    $newUser->setEmail($_POST['emailReg']);
+    $newUser->setFirstName($_POST['firstName']);
+    $newUser->setLastName($_POST['lastName']);
+    $newUser->setPhoneNumber($_POST['phoneNumber']);
+    $newUser->setAddress($_POST['address']);
+    
+    $rawDate = $_POST['dateOfBirth'];
+    $dateObj = DateTime::createFromFormat('Y-m-d', $rawDate);
+    $formattedDate = $dateObj->format('Y-m-d');
+    $newUser->setDateOfBirth($formattedDate);
+
+    $newUser->setPassword(password_hash($_POST['password'], PASSWORD_DEFAULT));
+    $newUser->setCurrentCart("");
+    $newUser->setPurchasedBooks("");
+
+    UserDAO::createUser($newUser);
+    $_SESSION['loggedin'] = $newUser->getEmail();
+}
+
+if (isset($_POST['bookISBN'])) {
+    $_GET['page'] = "order";
+    $user = UserDAO::getUser($_SESSION['loggedin']);
+    $user->addBookToCart($_POST['bookISBN']);
+    UserDAO::updateCurrentCart($user->getEmail(), $user->getCurrentCartString());
+}
+
+if (isset($_POST['removeCartISBN'])) {
+    $_GET['page'] = "myCart";
+    $user = UserDAO::getUser($_SESSION['loggedin']);
+    $user->removeBookFromCart($_POST['removeCartISBN']);
+    UserDAO::updateCurrentCart($user->getEmail(), $user->getCurrentCartString());
+}
+
+if (isset($_POST['purchaseCart'])) {
+    $_GET['page'] = "purchaseConfirmation";
+    $listISBN = explode(',', $_POST['purchaseCart']);
+
+    foreach ($listISBN as $ISBN) {
+        $book = BookDAO::getBook($ISBN);
+        $book->setPurchased(TRUE);
+        $book->setAvailability(FALSE);
+        $book->setPurchasedUser($_SESSION['loggedin']);
+        BookDAO::updateBookPurchase($book);
+    }
+
+    $user = UserDAO::getUser($_SESSION['loggedin']);
+    $user->setCurrentCart("");
+    UserDAO::updateCurrentCart($user->getEmail(), $user->getCurrentCartString());
+
 }
 
 //Router Logic
@@ -104,7 +159,7 @@ if (isset($_GET['page'])) {
             break;
         case 'detail':
             $book = BookDAO::getBook($_GET['book']);
-            bookDetailPage::header();
+            bookDetailPage::header($book);
             bookDetailPage::navBar();
             bookDetailPage::bookDetail($book);
             bookDetailPage::footer();
@@ -129,6 +184,27 @@ if (isset($_GET['page'])) {
             loginPage::loginForm(TRUE);
             loginPage::registerForm();
             loginPage::footer();
+            break;
+        case 'order':
+            $book = BookDAO::getBook($_POST['bookISBN']);
+            orderedPage::header();
+            orderedPage::navBar();
+            orderedPage::orderConfirmation($book);
+            orderedPage::footer();
+            break;
+        case 'myCart':
+            $user = UserDAO::getUser($_SESSION['loggedin']);
+            $myCartBooks = $user->getCurrentCart();
+            myCartPage::header();
+            myCartPage::navBar();
+            myCartPage::bookList($myCartBooks);
+            myCartPage::footer();
+            break;
+        case 'purchaseConfirmation':
+            purchaseCnfrmPage::header();
+            purchaseCnfrmPage::navBar();
+            purchaseCnfrmPage::purchaseConfirmation();
+            purchaseCnfrmPage::footer();
             break;
         default:
             // Handle 404 page or redirect to a default page

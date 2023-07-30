@@ -86,7 +86,7 @@
                         <a href="main.php?page=detail&book=<?php echo $book->getISBN(); ?>">
                         <img src="<?php echo $book->getImage(); ?>" alt="<?php echo $book->getTitle(); ?>">
                         <h2><?php echo $book->getTitle(); ?></h2>
-                        <h3><?php echo "$".$book->getPrice(); ?></h3>
+                        <h3><?php echo "$".number_format($book->getPrice(), 2); ?></h3>
                         <p>By <?php echo $book->getAuthor(); ?></p>
                         </a>
                     </div>

@@ -110,6 +110,27 @@ class UserDAO {
         return self::$db->rowCount();
 
     }
+
+    static function updateCurrentCart(string $email, string $newCart) : int  {
+        $edit = "UPDATE Users SET CurrentCart=:newCart WHERE Email=:email";
+
+        self::$db->query($edit);
+        self::$db->bind(":newCart", $newCart);
+        self::$db->bind(":email", $email);
+        self::$db->execute();
+
+        return self::$db->rowCount();
+    }
+
+    static function selectCurrentCart(string $email) : string  {
+        $select = "SELECT CurrentCart FROM Users WHERE Email=:email";
+
+        self::$db->query($select);
+        self::$db->bind(":email", $email);
+        self::$db->execute();
+
+        return self::$db->singleResult();
+    }
     
 
 }

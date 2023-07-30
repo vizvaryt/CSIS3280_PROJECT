@@ -30,3 +30,86 @@ Stack trace:
 [29-Jul-2023 10:34:25 Europe/Berlin] PHP Warning:  Undefined array key "registered" in C:\temp\PHP\Project\CSIS3280_PROJECT\main.php on line 53
 [29-Jul-2023 10:34:25 Europe/Berlin] PHP Stack trace:
 [29-Jul-2023 10:34:25 Europe/Berlin] PHP   1. {main}() C:\temp\PHP\Project\CSIS3280_PROJECT\main.php:0
+[30-Jul-2023 09:00:57 Europe/Berlin] PHP Fatal error:  Uncaught PDOException: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`bookstore`.`users`, CONSTRAINT `users_ibfk_1` FOREIGN KEY (`CurrentCart`) REFERENCES `books` (`ISBN`)) in C:\temp\PHP\Project\CSIS3280_PROJECT\inc\Utility\PDOAgent.class.php:80
+Stack trace:
+#0 C:\temp\PHP\Project\CSIS3280_PROJECT\inc\Utility\PDOAgent.class.php(80): PDOStatement->execute()
+#1 C:\temp\PHP\Project\CSIS3280_PROJECT\inc\Utility\UserDAO.class.php(33): PDOAgent->execute()
+#2 C:\temp\PHP\Project\CSIS3280_PROJECT\main.php(78): UserDAO::createUser(Object(User))
+#3 {main}
+  thrown in C:\temp\PHP\Project\CSIS3280_PROJECT\inc\Utility\PDOAgent.class.php on line 80
+[30-Jul-2023 09:02:55 Europe/Berlin] PHP Warning:  Undefined array key "loggedin" in C:\temp\PHP\Project\CSIS3280_PROJECT\main.php on line 139
+[30-Jul-2023 09:02:55 Europe/Berlin] PHP Stack trace:
+[30-Jul-2023 09:02:55 Europe/Berlin] PHP   1. {main}() C:\temp\PHP\Project\CSIS3280_PROJECT\main.php:0
+[30-Jul-2023 09:02:55 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to a member function getFirstName() on null in C:\temp\PHP\Project\CSIS3280_PROJECT\inc\Entity\myAccountPage.class.php:65
+Stack trace:
+#0 C:\temp\PHP\Project\CSIS3280_PROJECT\main.php(142): myAccountPage::userInfo(NULL)
+#1 {main}
+  thrown in C:\temp\PHP\Project\CSIS3280_PROJECT\inc\Entity\myAccountPage.class.php on line 65
+[30-Jul-2023 09:14:04 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to a member function getFirstName() on null in C:\temp\PHP\Project\CSIS3280_PROJECT\inc\Entity\myAccountPage.class.php:65
+Stack trace:
+#0 C:\temp\PHP\Project\CSIS3280_PROJECT\main.php(143): myAccountPage::userInfo(NULL)
+#1 {main}
+  thrown in C:\temp\PHP\Project\CSIS3280_PROJECT\inc\Entity\myAccountPage.class.php on line 65
+[30-Jul-2023 09:14:14 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to a member function getFirstName() on null in C:\temp\PHP\Project\CSIS3280_PROJECT\inc\Entity\myAccountPage.class.php:65
+Stack trace:
+#0 C:\temp\PHP\Project\CSIS3280_PROJECT\main.php(143): myAccountPage::userInfo(NULL)
+#1 {main}
+  thrown in C:\temp\PHP\Project\CSIS3280_PROJECT\inc\Entity\myAccountPage.class.php on line 65
+[30-Jul-2023 09:59:57 Europe/Berlin] PHP Warning:  require_once(inc/Entity/myCart.class.php): Failed to open stream: No such file or directory in C:\temp\PHP\Project\CSIS3280_PROJECT\main.php on line 17
+[30-Jul-2023 09:59:57 Europe/Berlin] PHP Stack trace:
+[30-Jul-2023 09:59:57 Europe/Berlin] PHP   1. {main}() C:\temp\PHP\Project\CSIS3280_PROJECT\main.php:0
+[30-Jul-2023 09:59:57 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required 'inc/Entity/myCart.class.php' (include_path='C:\xampp\php\PEAR') in C:\temp\PHP\Project\CSIS3280_PROJECT\main.php:17
+Stack trace:
+#0 {main}
+  thrown in C:\temp\PHP\Project\CSIS3280_PROJECT\main.php on line 17
+[30-Jul-2023 10:17:40 Europe/Berlin] PHP Fatal error:  Uncaught TypeError: BookDAO::getBook(): Return value must be of type Book, bool returned in C:\temp\PHP\Project\CSIS3280_PROJECT\inc\Utility\BookDAO.class.php:96
+Stack trace:
+#0 C:\temp\PHP\Project\CSIS3280_PROJECT\inc\Entity\myCartPage.class.php(66): BookDAO::getBook('')
+#1 C:\temp\PHP\Project\CSIS3280_PROJECT\main.php(173): myCartPage::bookList(Array)
+#2 {main}
+  thrown in C:\temp\PHP\Project\CSIS3280_PROJECT\inc\Utility\BookDAO.class.php on line 96
+[30-Jul-2023 10:19:40 Europe/Berlin] PHP Fatal error:  Uncaught TypeError: BookDAO::getBook(): Return value must be of type Book, bool returned in C:\temp\PHP\Project\CSIS3280_PROJECT\inc\Utility\BookDAO.class.php:96
+Stack trace:
+#0 C:\temp\PHP\Project\CSIS3280_PROJECT\inc\Entity\myCartPage.class.php(67): BookDAO::getBook('')
+#1 C:\temp\PHP\Project\CSIS3280_PROJECT\main.php(173): myCartPage::bookList(Array)
+#2 {main}
+  thrown in C:\temp\PHP\Project\CSIS3280_PROJECT\inc\Utility\BookDAO.class.php on line 96
+[30-Jul-2023 10:36:54 Europe/Berlin] PHP Fatal error:  Uncaught TypeError: UserDAO::selectCurrentCart(): Return value must be of type int, User returned in C:\temp\PHP\Project\CSIS3280_PROJECT\inc\Utility\UserDAO.class.php:132
+Stack trace:
+#0 C:\temp\PHP\Project\CSIS3280_PROJECT\main.php(171): UserDAO::selectCurrentCart('admin@admin.com')
+#1 {main}
+  thrown in C:\temp\PHP\Project\CSIS3280_PROJECT\inc\Utility\UserDAO.class.php on line 132
+[30-Jul-2023 10:37:12 Europe/Berlin] PHP Fatal error:  Uncaught TypeError: UserDAO::selectCurrentCart(): Return value must be of type string, User returned in C:\temp\PHP\Project\CSIS3280_PROJECT\inc\Utility\UserDAO.class.php:132
+Stack trace:
+#0 C:\temp\PHP\Project\CSIS3280_PROJECT\main.php(171): UserDAO::selectCurrentCart('admin@admin.com')
+#1 {main}
+  thrown in C:\temp\PHP\Project\CSIS3280_PROJECT\inc\Utility\UserDAO.class.php on line 132
+[30-Jul-2023 10:39:20 Europe/Berlin] PHP Fatal error:  Uncaught TypeError: UserDAO::selectCurrentCart(): Return value must be of type string, array returned in C:\temp\PHP\Project\CSIS3280_PROJECT\inc\Utility\UserDAO.class.php:132
+Stack trace:
+#0 C:\temp\PHP\Project\CSIS3280_PROJECT\main.php(171): UserDAO::selectCurrentCart('admin@admin.com')
+#1 {main}
+  thrown in C:\temp\PHP\Project\CSIS3280_PROJECT\inc\Utility\UserDAO.class.php on line 132
+[30-Jul-2023 10:39:51 Europe/Berlin] PHP Fatal error:  Uncaught TypeError: UserDAO::selectCurrentCart(): Return value must be of type string, User returned in C:\temp\PHP\Project\CSIS3280_PROJECT\inc\Utility\UserDAO.class.php:132
+Stack trace:
+#0 C:\temp\PHP\Project\CSIS3280_PROJECT\main.php(171): UserDAO::selectCurrentCart('admin@admin.com')
+#1 {main}
+  thrown in C:\temp\PHP\Project\CSIS3280_PROJECT\inc\Utility\UserDAO.class.php on line 132
+[30-Jul-2023 10:44:25 Europe/Berlin] PHP Fatal error:  Uncaught TypeError: BookDAO::getBook(): Return value must be of type Book, bool returned in C:\temp\PHP\Project\CSIS3280_PROJECT\inc\Utility\BookDAO.class.php:96
+Stack trace:
+#0 C:\temp\PHP\Project\CSIS3280_PROJECT\inc\Entity\myCartPage.class.php(67): BookDAO::getBook('')
+#1 C:\temp\PHP\Project\CSIS3280_PROJECT\main.php(174): myCartPage::bookList(Array)
+#2 {main}
+  thrown in C:\temp\PHP\Project\CSIS3280_PROJECT\inc\Utility\BookDAO.class.php on line 96
+[30-Jul-2023 10:44:36 Europe/Berlin] PHP Fatal error:  Uncaught TypeError: BookDAO::getBook(): Return value must be of type Book, bool returned in C:\temp\PHP\Project\CSIS3280_PROJECT\inc\Utility\BookDAO.class.php:96
+Stack trace:
+#0 C:\temp\PHP\Project\CSIS3280_PROJECT\inc\Entity\myCartPage.class.php(67): BookDAO::getBook('')
+#1 C:\temp\PHP\Project\CSIS3280_PROJECT\main.php(174): myCartPage::bookList(Array)
+#2 {main}
+  thrown in C:\temp\PHP\Project\CSIS3280_PROJECT\inc\Utility\BookDAO.class.php on line 96
+[30-Jul-2023 12:59:34 Europe/Berlin] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY093]: Invalid parameter number: parameter was not defined in C:\temp\PHP\Project\CSIS3280_PROJECT\inc\Utility\PDOAgent.class.php:80
+Stack trace:
+#0 C:\temp\PHP\Project\CSIS3280_PROJECT\inc\Utility\PDOAgent.class.php(80): PDOStatement->execute()
+#1 C:\temp\PHP\Project\CSIS3280_PROJECT\inc\Utility\BookDAO.class.php(186): PDOAgent->execute()
+#2 C:\temp\PHP\Project\CSIS3280_PROJECT\main.php(108): BookDAO::updateBookPurchase(Object(Book))
+#3 {main}
+  thrown in C:\temp\PHP\Project\CSIS3280_PROJECT\inc\Utility\PDOAgent.class.php on line 80

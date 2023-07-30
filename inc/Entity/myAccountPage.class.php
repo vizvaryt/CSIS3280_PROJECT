@@ -1,5 +1,7 @@
 <?php
 
+    require_once('./inc/Utility/BookDAO.class.php');
+
     class myAccountPage {
 
         //Displays header section
@@ -57,21 +59,32 @@
         static function userInfo($user) {
             ?>
             <div class="userInfoContainer">
-            <div class="textContainer">
-                <h2>My Account</h2>
-                <hr>
-                <p>
-                    <!-- TODO add purchased books list -->
-                    <b>Name: </b> <?php echo $user->getFirstName() . " " . $user->getLastName();?> <br>
-                    <b>Email: </b> <?php echo $user->getEmail();?> <br>
-                    <b>Date of Birth: </b> <?php echo $user->getDateOfBirth();?> <br>
-                    <b>Phone Number: </b> <?php echo $user->getPhoneNumber();?> <br>
-                    <b>Address: </b> <?php echo $user->getAddress();?> <br>
-                </p>
-            </div>
-            <form class="loginForm" action="main.php" method="POST">
-                <button type="submit" name="logout" value="TRUE">Logout</button>
-            </form>
+                <div class="textContainer">
+                    <h2>My Account</h2>
+                    <hr>
+                    <p>
+                        <b>Name: </b> <?php echo $user->getFirstName() . " " . $user->getLastName();?> <br>
+                        <b>Email: </b> <?php echo $user->getEmail();?> <br>
+                        <b>Date of Birth: </b> <?php echo $user->getDateOfBirth();?> <br>
+                        <b>Phone Number: </b> <?php echo $user->getPhoneNumber();?> <br>
+                        <b>Address: </b> <?php echo $user->getAddress();?> <br>
+                    </p>
+                <form class="loginForm" action="main.php" method="POST">
+                    <button type="submit" name="logout" value="TRUE">Logout</button>
+                </form>
+                </div>
+                <div class="textContainer">
+                    <h2>Your Purchased Books</h2>
+                    <hr>
+                    <ul>
+                    <?php
+                        $purchasedBooks = BookDAO::getPurchasedBooks($user->getEmail());
+                        foreach ($purchasedBooks as $book) {
+                            echo '<li>' . $book->getTitle() . ' - $' . number_format($book->getPrice(), 2) . '</li>';
+                        }
+                    ?>
+                    </ul>
+                </div>
             </div>
             <?php
         }

@@ -16,6 +16,17 @@ class User {
         return password_verify($passwordToVerify, $this->getPassword());
     }
 
+    function addBookToCart(string $ISBN) {
+        $this->CurrentCart .= $ISBN . ",";
+    }
+
+    function removeBookFromCart(string $ISBN) {
+        $currentCart = $this->getCurrentCart();
+        $pos = array_search($ISBN, $currentCart);
+        unset($currentCart[$pos]);
+        $this->setCurrentCart(implode(',',$currentCart)); 
+    }
+
     //Getters
     function getEmail(): string {
         return $this->Email;
@@ -38,11 +49,14 @@ class User {
     function getPassword(): string {
         return $this->Password;
     }
-    function getCurrentCart(): string {
+    function getCurrentCart(): Array {
+        return explode(',',$this->CurrentCart);
+    }
+    function getCurrentCartString(): string {
         return $this->CurrentCart;
     }
-    function getPurchasedBooks(): string {
-        return $this->PurchasedBooks;
+    function getPurchasedBooks(): Array {
+        return explode(',',$this->PurchasedBooks);
     }
 
     //Setters

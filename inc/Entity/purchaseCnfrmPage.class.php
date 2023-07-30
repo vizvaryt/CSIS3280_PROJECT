@@ -2,7 +2,7 @@
 
     require_once('inc/Utility/LoginManager.class.php');
 
-    class bestSellersPage {
+    class purchaseCnfrmPage {
 
         //Displays header section
         static function header() {
@@ -13,7 +13,7 @@
                         <meta charset="UTF-8">
                         <meta name="viewport" content="width=device-width, initial-scale=1.0">
                         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-                        <title>Bookstore Bestsellers</title>
+                        <title>Bookstore Purchase Confirmation</title>
                         <link rel="stylesheet" href="css/styles2.css">
                         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
                         <link rel="icon" href="./favicon.ico" type="image/x-icon">
@@ -39,7 +39,7 @@
             ?>
                 <div class="topnav">
                     <a class="navLeft" href="main.php?page=homePage">Home</a>
-                    <a class="navLeft activeLeft" href="main.php?page=bestSellers">Bestsellers</a>
+                    <a class="navLeft" href="main.php?page=bestSellers">Bestsellers</a>
                     <a class="navLeft" href="main.php?page=editorsPicks">Editor's Picks</a>
                     <a class="navLeft" href="main.php?page=textbooks">Textbooks</a>
                     <a class="navLeft" href="main.php?page=contact">Contact</a>
@@ -56,44 +56,22 @@
             <?php
         }
 
-        //Displays searchbar section and form
-        static function searchBar() {
+        //Displays Purchase Confirmation
+        static function purchaseConfirmation() {
             ?>
-                <div class="searchBar">
-                    <form id="searchForm" action="main.php" method="GET">
-                        <input id="searchBox" type="text" name="query" placeholder="search over 350,000 books!">
-                        <button id=searchButton type="submit"><i class="fas fa-search"></i></button>
-                        <br>
-                        <button class="toggle-button" name="option" value="bestsellers">Bestsellers</button>
-                        <button class="toggle-button" name="option" value="fiction">Fiction</button>
-                        <button class="toggle-button" name="option" value="nonfiction">Non-Fiction</button>
-                        <button class="toggle-button" name="option" value="textbooks">Textbooks</button>
-                        <button class="toggle-button" name="option" value="english">English</button>
-                        <button class="toggle-button" name="option" value="otherlanguage">Other Language</button>
-                    </form>
-                </div>
-            <?php
-        }
-
-        //Displays bookgallery section
-        static function bookGallery($bookArray) {
-            ?>
-            <div class="bookContainer">
-            <?php
-            foreach ($bookArray as $book) {
-                ?>
-                    <div class="bookCard">
-                        <a href="main.php?page=detail&book=<?php echo $book->getISBN(); ?>">
-                        <img src="<?php echo $book->getImage(); ?>" alt="<?php echo $book->getTitle(); ?>">
-                        <h2><?php echo $book->getTitle(); ?></h2>
-                        <h3><?php echo "$".number_format($book->getPrice(), 2); ?></h3>
-                        <p>By <?php echo $book->getAuthor(); ?></p>
-                        </a>
+                <!-- Top Level Book container for the whole body (flex) -->
+                <div class=bookContainer>
+                    <!-- Second Level container for the text displayed in the body of this page -->
+                    <div class="textContainer">
+                        <h2>Your books have been purchased!</h2>
+                        <hr>
+                        <p>
+                            Your card has been charged. <br>
+                            Your books will be delivered in 5-10 business days.
+                        </p>
+                        <h3>You can view your purchased books by accessing your account page.</h3>
                     </div>
-                <?php
-            }
-            ?>
-            </div>
+                </div>
             <?php
         }
     }

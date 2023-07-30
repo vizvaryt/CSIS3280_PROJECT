@@ -102,12 +102,16 @@ body {
 }
 
 .loginForm button{
-    height: 50px;
-    width: 100px;
-    border-radius: 5px;
-    border-color: #0ea7ff;
     background-color: #0ea7ff;
-    font-size: 13pt;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
 }
 
 .textContainer {
@@ -314,4 +318,62 @@ footer {
 
 footer a:visited {
     color: #f2f2f2;
+}
+
+
+
+.cartContainer {
+    font-family: Helvetica;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.myCartList {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 20px;
+}
+
+.myCartBook {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.myCartBookTitle {
+    margin-right: 10px;
+}
+
+.myCartRemoveButton {
+    background-color: #fa2222;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.myCartRemoveButton:hover {
+    background-color: #ff0000;
+}
+
+.purchaseCartButton {
+    background-color: #0ea7ff;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
 }

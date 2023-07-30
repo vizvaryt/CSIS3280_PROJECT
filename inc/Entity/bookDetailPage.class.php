@@ -5,7 +5,7 @@
     class bookDetailPage {
 
         //Displays header section
-        static function header() {
+        static function header($book) {
             ?>
                 <!DOCTYPE html>
                 <html lang="en">
@@ -13,7 +13,7 @@
                         <meta charset="UTF-8">
                         <meta name="viewport" content="width=device-width, initial-scale=1.0">
                         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-                        <title>UPDATE ME</title>
+                        <title>Bookstore - <?php echo $book->getTitle(); ?></title>
                         <link rel="stylesheet" href="css/styles2.css">
                         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
                         <link rel="icon" href="./favicon.ico" type="image/x-icon">
@@ -64,7 +64,7 @@
                     <!-- Second Level container for the bookCard that has been modified for this page -->
                     <div class="bookCardDetail">
                         <img src="<?php echo $book->getImage(); ?>" alt="<?php echo $book->getTitle(); ?>">
-                        <h3><?php echo "$".$book->getPrice(); ?></h3>
+                        <h3><?php echo "$".number_format($book->getPrice(), 2); ?></h3>
                     </div>
                     <!-- Second Level container for the text displayed in the body of this page -->
                     <div class="textContainer">
@@ -74,7 +74,7 @@
                         <p><?php echo $book->getDescription(); ?></p>
                         <hr>
                         <p>
-                            <b>Price:</b> $<?php echo $book->getPrice(); ?> <br>
+                            <b>Price:</b> $<?php echo number_format($book->getPrice(), 2); ?> <br>
                             <b>Language:</b> <?php echo $book->getLanguage(); ?> <br>
                             <b>Date of Publishing:</b> <?php echo $book->getPublishDate(); ?> <br>
                             <b>Edition:</b> <?php echo $book->getEdition(); ?> <br>
@@ -92,16 +92,25 @@
                                 <li><b>Sold Per Week:</b> <?php echo $book->getSoldPerWeek(); ?> units</li>
                             </ul>
                         </p>
-                        <!-- Third Level container for the orderForm. Currently does not work -->
-                        <!-- TODO make this work once the user session works -->
+                        <!-- Third Level container for the orderForm-->
                         <div class="orderForm">
-                        <h2>Order Book</h2>
-                        <form method="post">
-                            <label for="quantity">Quantity:</label>
-                            <input type="number" id="quantity" name="quantity" min="1" value="1">
-                            <button type="submit">Order</button>
-                        </form>
-                    </div>
+                        <?php
+                            if ($book->getAvailability()) {
+                                if (isset($_SESSION['loggedin'])) {
+                                    echo '<form action="main.php" method="post">
+                                    <input type="hidden" id="bookISBN" name="bookISBN" value="';
+                                    echo $book->getISBN() . '">';
+                                    echo '<button type="submit">Order</button></form>';
+                                }
+                                else {
+                                    echo '<h2>You must be logged in to purchase a book</h2>';
+                                }
+                            }
+                            else {
+                                echo '<h2>This book is currently unavailable</h2>';
+                            }
+                        ?>
+                        </div>
                     </div>
                 </div>
             <?php

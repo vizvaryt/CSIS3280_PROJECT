@@ -62,6 +62,18 @@ class BookDAO {
 
     }
 
+    static function getPurchasedBooks(string $purchasedUser) : Array {        
+        $select = "SELECT * FROM Books WHERE PurchasedUser=:purchasedUser";
+
+        self::$db->query($select);
+        self::$db->bind(":purchasedUser", $purchasedUser);
+
+        self::$db->execute();
+        
+        return self::$db->resultSet();
+
+    }
+
     //Function to DELETE a book
     //TODO make this actually work and log error
     static function deleteBook(string $isbn) : bool {
@@ -173,30 +185,15 @@ class BookDAO {
 
     //Function to UPDATE book attributes
     //TODO needs work before it will function
-    static function editBook(Book $newBook) : int   {
-        $editBook = "UPDATE Books SET Author=:author, Title=:title, Price=:price ";
+    static function updateBookPurchase(Book $newBook) : int   {
+        $editBook = "UPDATE Books SET Availability=:availability, Purchased=:purchased, PurchasedUser=:purchasedUser ";
         $editBook .= "WHERE ISBN=:isbn";
 
         self::$db->query($editBook);
         self::$db->bind(":isbn", $newBook->getISBN());
-        self::$db->bind(":author", $newBook->getAuthor());
-        self::$db->bind(":title", $newBook->getTitle());
-        self::$db->bind(":price", $newBook->getPrice());
-        self::$db->bind(":publishDate", $newBook->getPublishDate());
-        self::$db->bind(":edition", $newBook->getEdition());
-        self::$db->bind(":description", $newBook->getDescription());
-        self::$db->bind(":language", $newBook->getLanguage());
-        self::$db->bind(":fiction", $newBook->getFiction());
         self::$db->bind(":availability", $newBook->getAvailability());
-        self::$db->bind(":bestseller", $newBook->getBestseller());
-        self::$db->bind(":soldPerYear", $newBook->getSoldPerYear());
-        self::$db->bind(":soldPerMonth", $newBook->getSoldPerMonth());
-        self::$db->bind(":soldPerWeek", $newBook->getSoldPerWeek());
-        self::$db->bind(":editorsPick", $newBook->getEditorsPick());
-        self::$db->bind(":textbook", $newBook->getTextbook());
         self::$db->bind(":purchased", $newBook->getPurchased());
         self::$db->bind(":purchasedUser", $newBook->getPurchasedUser());
-        self::$db->bind(":image", $newBook->getImage());
 
         self::$db->execute();
 
