@@ -113,3 +113,21 @@ Stack trace:
 #2 C:\temp\PHP\Project\CSIS3280_PROJECT\main.php(108): BookDAO::updateBookPurchase(Object(Book))
 #3 {main}
   thrown in C:\temp\PHP\Project\CSIS3280_PROJECT\inc\Utility\PDOAgent.class.php on line 80
+[31-Jul-2023 09:04:34 Europe/Berlin] PHP Warning:  Undefined array key "loggedin" in C:\temp\Project\CSIS3280_PROJECT\main.php on line 196
+[31-Jul-2023 09:04:34 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to a member function getCurrentCart() on null in C:\temp\Project\CSIS3280_PROJECT\main.php:197
+Stack trace:
+#0 {main}
+  thrown in C:\temp\Project\CSIS3280_PROJECT\main.php on line 197
+[31-Jul-2023 09:09:10 Europe/Berlin] PHP Warning:  Undefined array key "loggedin" in C:\temp\Project\CSIS3280_PROJECT\main.php on line 196
+[31-Jul-2023 09:09:10 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to a member function getCurrentCart() on null in C:\temp\Project\CSIS3280_PROJECT\main.php:197
+Stack trace:
+#0 {main}
+  thrown in C:\temp\Project\CSIS3280_PROJECT\main.php on line 197
+[31-Jul-2023 09:58:08 Europe/Berlin] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Availabilty' in 'where clause' in C:\temp\Project\CSIS3280_PROJECT\inc\Utility\PDOAgent.class.php:80
+Stack trace:
+#0 C:\temp\Project\CSIS3280_PROJECT\inc\Utility\PDOAgent.class.php(80): PDOStatement->execute()
+#1 C:\temp\Project\CSIS3280_PROJECT\inc\Utility\BookDAO.class.php(82): PDOAgent->execute()
+#2 C:\temp\Project\CSIS3280_PROJECT\inc\Entity\homePage.class.php(64): BookDAO::getAvailableBooks()
+#3 C:\temp\Project\CSIS3280_PROJECT\main.php(138): homePage::searchBar()
+#4 {main}
+  thrown in C:\temp\Project\CSIS3280_PROJECT\inc\Utility\PDOAgent.class.php on line 80

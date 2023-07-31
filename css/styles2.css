@@ -41,6 +41,11 @@ body {
     color: white;
 }
 
+.counterContainer {
+    font-family: Helvetica;
+    text-align: center;
+}
+
 .bookContainer {
     display: flex; /* Use Flexbox to display books horizontally */
     flex-wrap: wrap; /* Wrap books to the next line if they overflow */

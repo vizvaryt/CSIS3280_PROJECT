@@ -74,6 +74,17 @@ class BookDAO {
 
     }
 
+    static function getAvailableBooks() : Array {        
+        $select = "SELECT * FROM Books WHERE Availability = TRUE";
+
+        self::$db->query($select);
+
+        self::$db->execute();
+        
+        return self::$db->resultSet();
+
+    }
+
     //Function to DELETE a book
     //TODO make this actually work and log error
     static function deleteBook(string $isbn) : bool {

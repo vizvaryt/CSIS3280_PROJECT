@@ -82,6 +82,18 @@ if (isset($_POST['firstName'])) {
     $_SESSION['loggedin'] = $newUser->getEmail();
 }
 
+if (isset($_POST['newPassword'])) {
+    $user = UserDAO::getUser($_SESSION['loggedin']);
+    if ($user->verifyPassword($_POST['oldPassword'])) {
+        $user->setPassword($_POST['newPassword']);
+        UserDAO::editUserPassword($user);
+        $_GET['page'] = "validPasswordChange"; 
+    }
+    else {
+        $_GET['page'] = "invalidPasswordChange"; 
+    }
+}
+
 if (isset($_POST['bookISBN'])) {
     $_GET['page'] = "order";
     $user = UserDAO::getUser($_SESSION['loggedin']);
@@ -175,7 +187,21 @@ if (isset($_GET['page'])) {
             $user = UserDAO::getUser($_SESSION['loggedin']);
             myAccountPage::header();
             myAccountPage::navBar();
-            myAccountPage::userInfo($user);
+            myAccountPage::userInfo($user, 0);
+            myAccountPage::footer();
+            break;
+        case 'invalidPasswordChange':
+            $user = UserDAO::getUser($_SESSION['loggedin']);
+            myAccountPage::header();
+            myAccountPage::navBar();
+            myAccountPage::userInfo($user, 1);
+            myAccountPage::footer();
+            break;
+        case 'validPasswordChange':
+            $user = UserDAO::getUser($_SESSION['loggedin']);
+            myAccountPage::header();
+            myAccountPage::navBar();
+            myAccountPage::userInfo($user, 2);
             myAccountPage::footer();
             break;
         case 'invalidLogin':

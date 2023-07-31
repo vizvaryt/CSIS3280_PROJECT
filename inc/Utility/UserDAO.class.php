@@ -85,25 +85,13 @@ class UserDAO {
     }
 
     //update
-    //TODO needs work
-    static function editUser(User $newUser) : int {
-        $editUser = "UPDATE Users SET 
-        FirstName=:firstName, LastName=:lastName, PhoneNumber=:phoneNumber, Address=:address, 
-        DateOfBirth=:dateOfBirth, Password=:password, CurrentCart=:currentCart,
-        PurchasedBooks=:purchasedBooks
-        ";
+    static function editUserPassword(User $newUser) : int {
+        $editUser = "UPDATE Users SET Password=:password ";
         $editUser .= "WHERE Email=:email";
 
         self::$db->query($editUser);
         self::$db->bind(":email", $newUser->getEmail());
-        self::$db->bind(":firstName", $newUser->getFirstName());
-        self::$db->bind(":lastName", $newUser->getLastName());
-        self::$db->bind(":phoneNumber", $newUser->getPhoneNumber());
-        self::$db->bind(":address", $newUser->getAddress());
-        self::$db->bind(":dateOfBirth", $newUser->getDateOfBirth());
         self::$db->bind(":password", $newUser->getPassword());
-        self::$db->bind(":currentCart", $newUser->getCurrentCart());
-        self::$db->bind(":purchasedBooks", $newUser->getPurchasedBooks());
 
         self::$db->execute();
 

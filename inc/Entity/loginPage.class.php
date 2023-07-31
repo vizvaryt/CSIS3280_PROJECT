@@ -45,12 +45,12 @@
                     <?php
                         if(LoginManager::verifyLogin()) {
                             echo '<a class="navRight" href="main.php?page=myAccount">My Account</a>';
+                            echo '<a class="navRight" href="main.php?page=myCart">My Cart</a>';
                         }
                         else {
-                            echo '<a class="navRight activeLeft" href="main.php?page=login">Login / Register</a>';
+                            echo '<a class="navRight" href="main.php?page=login">Login / Register</a>';
                         }
                     ?>
-                    <a class="navRight" href="main.php?page=myCart">My Cart</a>
                 </div>
                 <div class="formContainer">
             <?php

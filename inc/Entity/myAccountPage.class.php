@@ -45,18 +45,18 @@
                     <a class="navLeft" href="main.php?page=contact">Contact</a>
                     <?php
                         if(LoginManager::verifyLogin()) {
-                            echo '<a class="navRight activeLeft" href="main.php?page=myAccount">My Account</a>';
+                            echo '<a class="navRight" href="main.php?page=myAccount">My Account</a>';
+                            echo '<a class="navRight" href="main.php?page=myCart">My Cart</a>';
                         }
                         else {
                             echo '<a class="navRight" href="main.php?page=login">Login / Register</a>';
                         }
                     ?>
-                    <a class="navRight" href="main.php?page=myCart">My Cart</a>
                 </div>
             <?php
         }
 
-        static function userInfo($user) {
+        static function userInfo($user, $state) {
             ?>
             <div class="userInfoContainer">
                 <div class="textContainer">
@@ -72,6 +72,30 @@
                 <form class="loginForm" action="main.php" method="POST">
                     <button type="submit" name="logout" value="TRUE">Logout</button>
                 </form>
+                <h3>Password Update</h3>
+                <form class="loginForm" action="main.php" method="POST">
+                    <div class="loginFormRow">
+                        <label for="oldPassword">Old Password:</label>
+                        <input type="password" id="oldPassword" name="oldPassword" required>
+                    </div>
+                    <div class="loginFormRow">
+                        <label for="newPassword">New Password:</label>
+                        <input type="password" id="newPassword" name="newPassword" required>
+                    </div>
+                    <button type="submit">Change Password</button>
+                </form>
+                <?php
+                    switch($state) {
+                        case 0:
+                            break;
+                        case 1:
+                            echo '<h3>Invalid Password</h3>';
+                            break;
+                        case 2:
+                            echo '<h3>Password Updated</h3>';
+                            break;
+                    }
+                ?>
                 </div>
                 <div class="textContainer">
                     <h2>Your Purchased Books</h2>

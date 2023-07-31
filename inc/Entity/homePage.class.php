@@ -1,6 +1,7 @@
 <?php
 
     require_once('inc/Utility/LoginManager.class.php');
+    require_once('inc/Utility/BookDAO.class.php');
 
     class homePage {
 
@@ -46,12 +47,12 @@
                     <?php
                         if(LoginManager::verifyLogin()) {
                             echo '<a class="navRight" href="main.php?page=myAccount">My Account</a>';
+                            echo '<a class="navRight" href="main.php?page=myCart">My Cart</a>';
                         }
                         else {
                             echo '<a class="navRight" href="main.php?page=login">Login / Register</a>';
                         }
                     ?>
-                    <a class="navRight" href="main.php?page=myCart">My Cart</a>
                 </div>
             <?php
         }
@@ -59,6 +60,9 @@
         //Displays searchbar section and form
         static function searchBar() {
             ?>
+                <div class="counterContainer">
+                    <h3>Currently Available Books: <?php count(BookDAO::getAvailableBooks())?></h3>
+                </div>
                 <div class="searchBar">
                     <form id="searchForm" action="main.php" method="GET">
                         <input id="searchBox" type="text" name="query" placeholder="search over 350,000 books!">

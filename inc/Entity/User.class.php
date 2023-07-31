@@ -79,7 +79,7 @@ class User {
         $this->DateOfBirth = $dateOfBirth;
     }
     function setPassword(string $password){
-        $this->Password = $password;
+        $this->Password = password_hash($password, PASSWORD_DEFAULT);
     }
     function setCurrentCart(string $currentCart){
         $this->CurrentCart = $currentCart;
