@@ -13,7 +13,7 @@
                         <meta charset="UTF-8">
                         <meta name="viewport" content="width=device-width, initial-scale=1.0">
                         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-                        <title>Bookstore - <?php echo $book->getTitle(); ?></title>
+                        <title>BookMania - <?php echo $book->getTitle(); ?></title>
                         <link rel="stylesheet" href="css/styles2.css">
                         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
                         <link rel="icon" href="./favicon.ico" type="image/x-icon">
@@ -27,7 +27,7 @@
             ?>
                     </body>
                     <footer>
-                        Copyright Bookstore 2023 -
+                        Copyright BookMania 2023 -
                         <a href="">Contact Us</a>
                     </footer>
                 </html>
@@ -95,7 +95,7 @@
                         <!-- Third Level container for the orderForm-->
                         <div class="orderForm">
                         <?php
-                            if ($book->getAvailability()) {
+                            if ($book->getAvailability() && $book->getInCart() == FALSE) {
                                 if (isset($_SESSION['loggedin'])) {
                                     echo '<form action="main.php" method="post">
                                     <input type="hidden" id="bookISBN" name="bookISBN" value="';
@@ -105,6 +105,9 @@
                                 else {
                                     echo '<h2>You must be logged in to purchase a book</h2>';
                                 }
+                            }
+                            elseif ($book->getInCart()) {
+                                echo '<h2>This book is currently in someones cart</h2>';
                             }
                             else {
                                 echo '<h2>This book is currently unavailable</h2>';

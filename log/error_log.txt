@@ -131,3 +131,39 @@ Stack trace:
 #3 C:\temp\Project\CSIS3280_PROJECT\main.php(138): homePage::searchBar()
 #4 {main}
   thrown in C:\temp\Project\CSIS3280_PROJECT\inc\Utility\PDOAgent.class.php on line 80
+[31-Jul-2023 21:14:40 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in C:\Temp\Project\CSIS3280_PROJECT\inc\Utility\PDOAgent.class.php:54
+Stack trace:
+#0 C:\Temp\Project\CSIS3280_PROJECT\inc\Utility\BookDAO.class.php(59): PDOAgent->query('SELECT * FROM B...')
+#1 C:\Temp\Project\CSIS3280_PROJECT\main.php(34): BookDAO::getBooks()
+#2 {main}
+  thrown in C:\Temp\Project\CSIS3280_PROJECT\inc\Utility\PDOAgent.class.php on line 54
+[31-Jul-2023 21:39:10 Europe/Berlin] PHP Fatal error:  Uncaught TypeError: Book::getInCart(): Return value must be of type bool, null returned in C:\Temp\Project\CSIS3280_PROJECT\inc\Entity\Book.class.php:101
+Stack trace:
+#0 C:\Temp\Project\CSIS3280_PROJECT\inc\Entity\bookDetailPage.class.php(109): Book->getInCart()
+#1 C:\Temp\Project\CSIS3280_PROJECT\main.php(180): bookDetailPage::bookDetail(Object(Book))
+#2 {main}
+  thrown in C:\Temp\Project\CSIS3280_PROJECT\inc\Entity\Book.class.php on line 101
+[31-Jul-2023 21:58:25 Europe/Berlin] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in C:\Temp\Project\CSIS3280_PROJECT\inc\Utility\LoginManager.class.php on line 10
+[31-Jul-2023 21:58:25 Europe/Berlin] PHP Stack trace:
+[31-Jul-2023 21:58:25 Europe/Berlin] PHP   1. {main}() C:\Temp\Project\CSIS3280_PROJECT\main.php:0
+[31-Jul-2023 21:58:25 Europe/Berlin] PHP   2. homePage::navBar() C:\Temp\Project\CSIS3280_PROJECT\main.php:309
+[31-Jul-2023 21:58:25 Europe/Berlin] PHP   3. LoginManager::verifyLogin() C:\Temp\Project\CSIS3280_PROJECT\inc\Entity\homePage.class.php:48
+[31-Jul-2023 21:58:25 Europe/Berlin] PHP   4. session_start() C:\Temp\Project\CSIS3280_PROJECT\inc\Utility\LoginManager.class.php:10
+[31-Jul-2023 21:58:25 Europe/Berlin] PHP Warning:  session_destroy(): Trying to destroy uninitialized session in C:\Temp\Project\CSIS3280_PROJECT\inc\Utility\LoginManager.class.php on line 19
+[31-Jul-2023 21:58:25 Europe/Berlin] PHP Stack trace:
+[31-Jul-2023 21:58:25 Europe/Berlin] PHP   1. {main}() C:\Temp\Project\CSIS3280_PROJECT\main.php:0
+[31-Jul-2023 21:58:25 Europe/Berlin] PHP   2. homePage::navBar() C:\Temp\Project\CSIS3280_PROJECT\main.php:309
+[31-Jul-2023 21:58:25 Europe/Berlin] PHP   3. LoginManager::verifyLogin() C:\Temp\Project\CSIS3280_PROJECT\inc\Entity\homePage.class.php:48
+[31-Jul-2023 21:58:25 Europe/Berlin] PHP   4. session_destroy() C:\Temp\Project\CSIS3280_PROJECT\inc\Utility\LoginManager.class.php:19
+[31-Jul-2023 21:58:38 Europe/Berlin] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in C:\Temp\Project\CSIS3280_PROJECT\inc\Utility\LoginManager.class.php on line 10
+[31-Jul-2023 21:58:38 Europe/Berlin] PHP Stack trace:
+[31-Jul-2023 21:58:38 Europe/Berlin] PHP   1. {main}() C:\Temp\Project\CSIS3280_PROJECT\main.php:0
+[31-Jul-2023 21:58:38 Europe/Berlin] PHP   2. homePage::navBar() C:\Temp\Project\CSIS3280_PROJECT\main.php:309
+[31-Jul-2023 21:58:38 Europe/Berlin] PHP   3. LoginManager::verifyLogin() C:\Temp\Project\CSIS3280_PROJECT\inc\Entity\homePage.class.php:48
+[31-Jul-2023 21:58:38 Europe/Berlin] PHP   4. session_start() C:\Temp\Project\CSIS3280_PROJECT\inc\Utility\LoginManager.class.php:10
+[31-Jul-2023 21:58:38 Europe/Berlin] PHP Warning:  session_destroy(): Trying to destroy uninitialized session in C:\Temp\Project\CSIS3280_PROJECT\inc\Utility\LoginManager.class.php on line 19
+[31-Jul-2023 21:58:38 Europe/Berlin] PHP Stack trace:
+[31-Jul-2023 21:58:38 Europe/Berlin] PHP   1. {main}() C:\Temp\Project\CSIS3280_PROJECT\main.php:0
+[31-Jul-2023 21:58:38 Europe/Berlin] PHP   2. homePage::navBar() C:\Temp\Project\CSIS3280_PROJECT\main.php:309
+[31-Jul-2023 21:58:38 Europe/Berlin] PHP   3. LoginManager::verifyLogin() C:\Temp\Project\CSIS3280_PROJECT\inc\Entity\homePage.class.php:48
+[31-Jul-2023 21:58:38 Europe/Berlin] PHP   4. session_destroy() C:\Temp\Project\CSIS3280_PROJECT\inc\Utility\LoginManager.class.php:19

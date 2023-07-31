@@ -17,14 +17,14 @@ class BookDAO {
             PublishDate, Edition, Description, Language,
             Fiction, Availability, Bestseller, SoldPerYear,
             SoldPerMonth, SoldPerWeek, EditorsPick, Textbook,
-            Purchased, PurchasedUser, Image
+            Purchased, PurchasedUser, InCart, Image
             ) ";
         $insertBook .= "VALUES (
             :isbn, :author, :title, :price,
             :publishDate, :edition, :description, :language,
             :fiction, :availability, :bestseller, :soldPerYear,
             :soldPerMonth, :soldPerWeek, :editorsPick, :textbook,
-            :purchased, :purchasedUser, :image
+            :purchased, :purchasedUser, :inCart, :image
             )";
 
         self::$db->query($insertBook);
@@ -46,6 +46,7 @@ class BookDAO {
         self::$db->bind(":textbook", $newBook->getTextbook());
         self::$db->bind(":purchased", $newBook->getPurchased());
         self::$db->bind(":purchasedUser", $newBook->getPurchasedUser());
+        self::$db->bind(":inCart", $newBook->getInCart());
         self::$db->bind(":image", $newBook->getImage());
 
         self::$db->execute();
@@ -194,8 +195,6 @@ class BookDAO {
         return self::$db->resultSet();
     }
 
-    //Function to UPDATE book attributes
-    //TODO needs work before it will function
     static function updateBookPurchase(Book $newBook) : int   {
         $editBook = "UPDATE Books SET Availability=:availability, Purchased=:purchased, PurchasedUser=:purchasedUser ";
         $editBook .= "WHERE ISBN=:isbn";
@@ -205,6 +204,18 @@ class BookDAO {
         self::$db->bind(":availability", $newBook->getAvailability());
         self::$db->bind(":purchased", $newBook->getPurchased());
         self::$db->bind(":purchasedUser", $newBook->getPurchasedUser());
+
+        self::$db->execute();
+
+        return self::$db->rowCount();
+    }
+
+    static function setInCart(Book $newBook, bool $inCart) : int {
+        $editBook = "UPDATE Books SET InCart = :inCart WHERE ISBN = :isbn";
+
+        self::$db->query($editBook);
+        self::$db->bind(":isbn", $newBook->getISBN());
+        self::$db->bind(":inCart", $inCart);
 
         self::$db->execute();
 

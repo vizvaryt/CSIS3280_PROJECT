@@ -51,6 +51,7 @@ body {
     flex-wrap: wrap; /* Wrap books to the next line if they overflow */
     justify-content: center; /* Center books horizontally */
     align-items: flex-start;
+    padding-bottom: 100px;
 }
 
 .formContainer {

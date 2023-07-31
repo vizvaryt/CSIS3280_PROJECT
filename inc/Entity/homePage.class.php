@@ -14,7 +14,7 @@
                         <meta charset="UTF-8">
                         <meta name="viewport" content="width=device-width, initial-scale=1.0">
                         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-                        <title>Bookstore Home</title>
+                        <title>BookMania Home</title>
                         <link rel="stylesheet" href="css/styles2.css">
                         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
                         <link rel="icon" href="./favicon.ico" type="image/x-icon">
@@ -28,7 +28,7 @@
             ?>
                     </body>
                     <footer>
-                        Copyright Bookstore 2023 -
+                        Copyright BookMania 2023 -
                         <a href="main.php?page=contact">Contact Us</a>
                     </footer>
                 </html>
@@ -61,7 +61,7 @@
         static function searchBar() {
             ?>
                 <div class="counterContainer">
-                    <h3>Currently Available Books: <?php count(BookDAO::getAvailableBooks())?></h3>
+                    <h3>Currently Available Books: <?php $books = BookDAO::getAvailableBooks(); echo count($books);?></h3>
                 </div>
                 <div class="searchBar">
                     <form id="searchForm" action="main.php" method="GET">

@@ -99,6 +99,10 @@ if (isset($_POST['bookISBN'])) {
     $user = UserDAO::getUser($_SESSION['loggedin']);
     $user->addBookToCart($_POST['bookISBN']);
     UserDAO::updateCurrentCart($user->getEmail(), $user->getCurrentCartString());
+
+    $book = BookDAO::getBook($_POST['bookISBN']);
+    $book->setInCart(TRUE);
+    BookDAO::setInCart($book, TRUE);
 }
 
 if (isset($_POST['removeCartISBN'])) {

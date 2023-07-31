@@ -20,6 +20,7 @@ class Book  {
     private $Textbook;
     private $Purchased;
     private $PurchasedUser;
+    private $InCart;
     private $Image;
     
 
@@ -94,6 +95,10 @@ class Book  {
 
     function getPurchasedUser(): string {
         return $this->PurchasedUser;
+    }
+
+    function getInCart(): bool {
+        return $this->InCart;
     }
 
     function getImage(): string {
@@ -172,6 +177,10 @@ class Book  {
 
     function setPurchasedUser(string $purchasedUser){
         $this->PurchasedUser = $purchasedUser;
+    }
+
+    function setInCart(bool $inCart){
+        $this->InCart = $inCart;
     }
 
     function setImage(string $image){
