@@ -28,7 +28,7 @@
                     </body>
                     <footer>
                         Copyright BookMania 2023 -
-                        <a href="">Contact Us</a>
+                        <a href="TeamNumber03.php?page=contact">Contact Us</a>
                     </footer>
                 </html>
             <?php
@@ -38,18 +38,18 @@
         static function navBar() {
             ?>
                 <div class="topnav">
-                    <a class="navLeft" href="main.php?page=homePage">Home</a>
-                    <a class="navLeft" href="main.php?page=bestSellers">Bestsellers</a>
-                    <a class="navLeft" href="main.php?page=editorsPicks">Editor's Picks</a>
-                    <a class="navLeft" href="main.php?page=textbooks">Textbooks</a>
-                    <a class="navLeft" href="main.php?page=contact">Contact</a>
+                    <a class="navLeft" href="TeamNumber03.php?page=homePage">Home</a>
+                    <a class="navLeft" href="TeamNumber03.php?page=bestSellers">Bestsellers</a>
+                    <a class="navLeft" href="TeamNumber03.php?page=editorsPicks">Editor's Picks</a>
+                    <a class="navLeft" href="TeamNumber03.php?page=textbooks">Textbooks</a>
+                    <a class="navLeft" href="TeamNumber03.php?page=contact">Contact</a>
                     <?php
                         if(LoginManager::verifyLogin()) {
-                            echo '<a class="navRight" href="main.php?page=myAccount">My Account</a>';
-                            echo '<a class="navRight" href="main.php?page=myCart">My Cart</a>';
+                            echo '<a class="navRight" href="TeamNumber03.php?page=myAccount">My Account</a>';
+                            echo '<a class="navRight" href="TeamNumber03.php?page=myCart">My Cart</a>';
                         }
                         else {
-                            echo '<a class="navRight" href="main.php?page=login">Login / Register</a>';
+                            echo '<a class="navRight" href="TeamNumber03.php?page=login">Login / Register</a>';
                         }
                     ?>
                 </div>
@@ -98,7 +98,7 @@
                             //Relevant logic for determining whether the book can be added to cart or not
                             if ($book->getAvailability() && $book->getInCart() == FALSE) {
                                 if (isset($_SESSION['loggedin'])) {
-                                    echo '<form action="main.php" method="post">
+                                    echo '<form action="TeamNumber03.php" method="post">
                                     <input type="hidden" id="bookISBN" name="bookISBN" value="';
                                     echo $book->getISBN() . '">';
                                     echo '<button type="submit">Order</button></form>';

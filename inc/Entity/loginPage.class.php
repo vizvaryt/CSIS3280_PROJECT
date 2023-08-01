@@ -27,7 +27,7 @@
                     </body>
                     <footer>
                         Copyright BookMania 2023 -
-                        <a href="main.php?page=contact">Contact Us</a>
+                        <a href="TeamNumber03.php">Contact Us</a>
                     </footer>
                 </html>
             <?php
@@ -37,18 +37,18 @@
         static function navBar() {
             ?>
                 <div class="topnav">
-                    <a class="navLeft" href="main.php?page=homePage">Home</a>
-                    <a class="navLeft" href="main.php?page=bestSellers">Bestsellers</a>
-                    <a class="navLeft" href="main.php?page=editorsPicks">Editor's Picks</a>
-                    <a class="navLeft" href="main.php?page=textbooks">Textbooks</a>
-                    <a class="navLeft" href="main.php?page=contact">Contact</a>
+                    <a class="navLeft" href="TeamNumber03.php?page=homePage">Home</a>
+                    <a class="navLeft" href="TeamNumber03.php?page=bestSellers">Bestsellers</a>
+                    <a class="navLeft" href="TeamNumber03.php?page=editorsPicks">Editor's Picks</a>
+                    <a class="navLeft" href="TeamNumber03.php?page=textbooks">Textbooks</a>
+                    <a class="navLeft" href="TeamNumber03.php?page=contact">Contact</a>
                     <?php
                         if(LoginManager::verifyLogin()) {
-                            echo '<a class="navRight" href="main.php?page=myAccount">My Account</a>';
-                            echo '<a class="navRight" href="main.php?page=myCart">My Cart</a>';
+                            echo '<a class="navRight" href="TeamNumber03.php?page=myAccount">My Account</a>';
+                            echo '<a class="navRight" href="TeamNumber03.php?page=myCart">My Cart</a>';
                         }
                         else {
-                            echo '<a class="navRight" href="main.php?page=login">Login / Register</a>';
+                            echo '<a class="navRight" href="TeamNumber03.php?page=login">Login / Register</a>';
                         }
                     ?>
                 </div>
@@ -61,7 +61,7 @@
             ?>
                     <div class="loginContainer">
                         <h1>Login</h1>
-                        <form class="loginForm" action="main.php" method="POST">
+                        <form class="loginForm" action="TeamNumber03.php" method="POST">
                             <div class="loginFormRow">
                             <label for="email">Email:</label>
                             <input type="text" id="email" name="email" required> <br>
@@ -86,7 +86,7 @@
             ?>
                     <div class="registerContainer">
                         <h1>Register</h1>
-                        <form class="loginForm" action="main.php" method="POST">
+                        <form class="loginForm" action="TeamNumber03.php" method="POST">
                             <div class="loginFormRow">
                             <label for="emailReg">Email:</label>
                             <input type="text" id="emailReg" name="emailReg" required> <br>
