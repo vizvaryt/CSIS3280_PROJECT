@@ -56,6 +56,7 @@
             <?php
         }
 
+        //Displays the login form with a check to see if the last attempt was invalid
         static function loginForm($invalid) {
             ?>
                     <div class="loginContainer">
@@ -80,6 +81,7 @@
             <?php
         }
 
+        //Displays the registration form
         static function registerForm() {
             ?>
                     <div class="registerContainer">

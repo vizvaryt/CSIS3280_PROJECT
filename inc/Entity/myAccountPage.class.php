@@ -56,6 +56,7 @@
             <?php
         }
 
+        //Displays the user's info along with the logout button, and the password change form
         static function userInfo($user, $state) {
             ?>
             <div class="userInfoContainer">
@@ -69,9 +70,11 @@
                         <b>Phone Number: </b> <?php echo $user->getPhoneNumber();?> <br>
                         <b>Address: </b> <?php echo $user->getAddress();?> <br>
                     </p>
+                    <!-- Logout form -->
                 <form class="loginForm" action="main.php" method="POST">
                     <button type="submit" name="logout" value="TRUE">Logout</button>
                 </form>
+                <!-- Password change form -->
                 <h3>Password Update</h3>
                 <form class="loginForm" action="main.php" method="POST">
                     <div class="loginFormRow">
@@ -85,6 +88,7 @@
                     <button type="submit">Change Password</button>
                 </form>
                 <?php
+                    //Validation on password change
                     switch($state) {
                         case 0:
                             break;
@@ -97,6 +101,7 @@
                     }
                 ?>
                 </div>
+                <!-- Container that displays a list of the user's purchased books -->
                 <div class="textContainer">
                     <h2>Your Purchased Books</h2>
                     <hr>

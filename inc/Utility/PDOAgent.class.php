@@ -1,8 +1,5 @@
 <?php
 
-//Reference https://culttt.com/2012/10/01/roll-your-own-pdo-php-class/
-// Construct the DSN!
-
 class PDOAgent    {
 
 //Database connection details
@@ -29,12 +26,9 @@ private $pdo;
 
 public function __construct(string $className)  {  
 
-    //Copy the class name
     $this->className = $className;
 
-    //Build DSN AlWAYS CHECK YOUR MYSQL PORT!
     $this->dsn = "mysql:host={$this->host};dbname={$this->dbname};port={$this->dbport}";
-    //echo $this->dsn;
 
     $options = array(
         PDO::ATTR_PERSISTENT => true,
@@ -43,13 +37,12 @@ public function __construct(string $className)  {
 
     try {
         $this->pdo = new PDO($this->dsn, $this->user, $this->pass, $options);
-        //echo $this->pdo;
     } catch (PDOException $e)   {
         $this->error = $e->getMessage();
     }
 }
 
-//Prepare the satemet for execution
+//Prepare the statement for execution
 public function query(string $query)    {
     $this->stmt = $this->pdo->prepare($query);
 }
@@ -86,7 +79,7 @@ public function bind($param, $value, $type = null)  {
    //Return a single result
    public function singleResult()   {
        
-        //Executethe statement
+        //Execute the statement
         $this->stmt->execute();
         //set fetch mode to return classes
         $this->stmt->setFetchMode(PDO::FETCH_CLASS, $this->className);
@@ -101,7 +94,7 @@ public function bind($param, $value, $type = null)  {
        return $this->stmt->fetchAll(PDO::FETCH_CLASS,$this->className);
    }
 
-   //Return the rowcount
+   //Return the rowCount
    public function rowCount() : int   {
        return $this->stmt->rowCount();
    }

@@ -12,14 +12,17 @@ class User {
     private $CurrentCart;
     private $PurchasedBooks;
 
+    //Verifies password
     function verifyPassword(string $passwordToVerify){
         return password_verify($passwordToVerify, $this->getPassword());
     }
 
+    //Adds book to the currentCart parameter by appending it
     function addBookToCart(string $ISBN) {
         $this->CurrentCart .= $ISBN . ",";
     }
 
+    //Searches the currentCart array to find the ISBN and then removes it
     function removeBookFromCart(string $ISBN) {
         $currentCart = $this->getCurrentCart();
         $pos = array_search($ISBN, $currentCart);
@@ -78,6 +81,7 @@ class User {
     function setDateOfBirth(string $dateOfBirth){
         $this->DateOfBirth = $dateOfBirth;
     }
+    //Set to always hash password
     function setPassword(string $password){
         $this->Password = password_hash($password, PASSWORD_DEFAULT);
     }

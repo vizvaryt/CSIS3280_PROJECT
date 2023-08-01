@@ -1,21 +1,19 @@
 <?php
 
-    //TODO reformat and comment
     class LoginManager {
 
         static function verifyLogin()   {
-            // check for a session
+            //Checks for a session
             if(session_id() == '' && !isset($_SESSION)){
-                // start the session
                 session_start();
             }
     
-            // is anyone login?
+            //Checks if anyone is logged in
             if(isset($_SESSION['loggedin'])){
                 return true;
             }
             else{
-                // destroy the session
+                //Close the session
                 session_destroy();
                 return false;
     

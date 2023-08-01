@@ -62,6 +62,7 @@
                 <div class="contactBody">
                     <h1>Tristan Vizvary's Bookstore</h1>
                     <p>This bookstore was created by Tristan Vizvary for his CSIS3280 class project.</p>
+                    <p>You can contact us at 123-456-7890 or contact@bookmania.net</p>
                 </div>
             <?php
         }

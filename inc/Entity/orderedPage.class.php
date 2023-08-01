@@ -56,7 +56,7 @@
             <?php
         }
 
-        //Displays Purchase Notification
+        //Displays Order Notification
         static function orderConfirmation($book) {
             ?>
                 <!-- Top Level Book container for the whole body (flex) -->

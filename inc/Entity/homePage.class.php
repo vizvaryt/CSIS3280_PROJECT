@@ -60,6 +60,7 @@
         //Displays searchbar section and form
         static function searchBar() {
             ?>
+                <!-- Show the currently available books on the website statistically -->
                 <div class="counterContainer">
                     <h3>Currently Available Books: <?php $books = BookDAO::getAvailableBooks(); echo count($books);?></h3>
                 </div>

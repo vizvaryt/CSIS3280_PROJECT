@@ -82,6 +82,7 @@ if (isset($_POST['firstName'])) {
     $_SESSION['loggedin'] = $newUser->getEmail();
 }
 
+//Password change POST check
 if (isset($_POST['newPassword'])) {
     $user = UserDAO::getUser($_SESSION['loggedin']);
     if ($user->verifyPassword($_POST['oldPassword'])) {
@@ -94,6 +95,7 @@ if (isset($_POST['newPassword'])) {
     }
 }
 
+//Add to cart POST check
 if (isset($_POST['bookISBN'])) {
     $_GET['page'] = "order";
     $user = UserDAO::getUser($_SESSION['loggedin']);
@@ -105,6 +107,7 @@ if (isset($_POST['bookISBN'])) {
     BookDAO::setInCart($book, TRUE);
 }
 
+//remove from cart POST check
 if (isset($_POST['removeCartISBN'])) {
     $_GET['page'] = "myCart";
     $user = UserDAO::getUser($_SESSION['loggedin']);
@@ -112,6 +115,7 @@ if (isset($_POST['removeCartISBN'])) {
     UserDAO::updateCurrentCart($user->getEmail(), $user->getCurrentCartString());
 }
 
+//Purchase cart POST check
 if (isset($_POST['purchaseCart'])) {
     $_GET['page'] = "purchaseConfirmation";
     $listISBN = explode(',', $_POST['purchaseCart']);
@@ -132,7 +136,6 @@ if (isset($_POST['purchaseCart'])) {
 
 //Router Logic
 
-//TODO add 404 page
 //First Router level, checks 'page' value from navbar hrefs
 if (isset($_GET['page'])) {
     switch ($_GET['page']) {
@@ -237,8 +240,13 @@ if (isset($_GET['page'])) {
             purchaseCnfrmPage::footer();
             break;
         default:
-            // Handle 404 page or redirect to a default page
+            homePage::header();
+            homePage::navBar();
+            homePage::searchBar();
+            homePage::bookGallery($books);
+            homePage::footer();
             break;
+
     }
 
 //Second Router level, checks for 'option' and 'query' values from the search bar

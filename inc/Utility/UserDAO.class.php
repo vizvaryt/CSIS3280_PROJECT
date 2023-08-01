@@ -8,7 +8,7 @@ class UserDAO {
         self::$db = new PDOAgent($className);
     }
 
-    //create
+    //create User
     static function createUser(User $newUser) : int {
         $insertUser = "INSERT INTO Users (
             Email, FirstName, LastName, PhoneNumber, Address,
@@ -35,7 +35,7 @@ class UserDAO {
         return self::$db->lastInsertId();
     }
 
-    //read all
+    //read all users
     static function getUsers() : Array {
         $selectAll = "SELECT * FROM Users";
         self::$db->query($selectAll);
@@ -43,6 +43,7 @@ class UserDAO {
         return self::$db->resultSet();
     }
 
+    //get specific user based on email
     static function getUser($email) {
         $select = "SELECT * FROM Users WHERE Email = :email";
 
@@ -64,7 +65,7 @@ class UserDAO {
 
     }
 
-    //delete
+    //delete specific user based on email
     static function deleteUser(string $email) : bool {
         $deleteUser = "DELETE FROM Books WHERE EMAIL = :email";
         try{
@@ -77,14 +78,12 @@ class UserDAO {
             }
 
         }catch(Exception $e){
-            //echo $e->getMessage(); // should echo it in the log file
-            //self::$db->debugDumpParams();
             return false;
         }
         return true;
     }
 
-    //update
+    //update user's password
     static function editUserPassword(User $newUser) : int {
         $editUser = "UPDATE Users SET Password=:password ";
         $editUser .= "WHERE Email=:email";
@@ -99,6 +98,7 @@ class UserDAO {
 
     }
 
+    //update user's current cart
     static function updateCurrentCart(string $email, string $newCart) : int  {
         $edit = "UPDATE Users SET CurrentCart=:newCart WHERE Email=:email";
 
@@ -110,6 +110,7 @@ class UserDAO {
         return self::$db->rowCount();
     }
 
+    //select current user's cart
     static function selectCurrentCart(string $email) : string  {
         $select = "SELECT CurrentCart FROM Users WHERE Email=:email";
 

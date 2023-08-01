@@ -95,6 +95,7 @@
                         <!-- Third Level container for the orderForm-->
                         <div class="orderForm">
                         <?php
+                            //Relevant logic for determining whether the book can be added to cart or not
                             if ($book->getAvailability() && $book->getInCart() == FALSE) {
                                 if (isset($_SESSION['loggedin'])) {
                                     echo '<form action="main.php" method="post">

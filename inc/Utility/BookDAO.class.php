@@ -63,6 +63,7 @@ class BookDAO {
 
     }
 
+    //Function that SELECTs all purchased books by the user
     static function getPurchasedBooks(string $purchasedUser) : Array {        
         $select = "SELECT * FROM Books WHERE PurchasedUser=:purchasedUser";
 
@@ -75,6 +76,7 @@ class BookDAO {
 
     }
 
+    //Function that SELECTs all of the available books
     static function getAvailableBooks() : Array {        
         $select = "SELECT * FROM Books WHERE Availability = TRUE";
 
@@ -87,7 +89,6 @@ class BookDAO {
     }
 
     //Function to DELETE a book
-    //TODO make this actually work and log error
     static function deleteBook(string $isbn) : bool {
         $deleteBook = "DELETE FROM Books WHERE ISBN = :isbn";
         try{
@@ -101,8 +102,6 @@ class BookDAO {
 
         }catch(Exception $e){
 
-            //echo $e->getMessage(); // should echo it in the log file
-            //self::$db->debugDumpParams();
             return false;
         }
         
@@ -195,6 +194,7 @@ class BookDAO {
         return self::$db->resultSet();
     }
 
+    //Function to update a book to purchased status along with the user that purchased it
     static function updateBookPurchase(Book $newBook) : int   {
         $editBook = "UPDATE Books SET Availability=:availability, Purchased=:purchased, PurchasedUser=:purchasedUser ";
         $editBook .= "WHERE ISBN=:isbn";
@@ -210,6 +210,7 @@ class BookDAO {
         return self::$db->rowCount();
     }
 
+    //Function that sets a book as inCart status
     static function setInCart(Book $newBook, bool $inCart) : int {
         $editBook = "UPDATE Books SET InCart = :inCart WHERE ISBN = :isbn";
 

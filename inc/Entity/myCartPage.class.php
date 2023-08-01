@@ -56,6 +56,7 @@
             <?php
         }
 
+        //Displays the all of the books in the current user's cart along with buttons to remove them, their prices, and a grandtotal determined by tax and shipping additives
         static function bookList($bookArray) {
             $subTotalPrice = 0;
             $shippingTax = 0;
